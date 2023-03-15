@@ -1,0 +1,20 @@
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "jsxBracketSameLine": false,
+  "semi": false,
+  "parser": "babel",
+  "overrides": [
+    {
+      "files": "*.css",
+      "options": {
+        "singleQuote": false,
+        "parser": "css"
+      }
+    }
+  ]
+}
