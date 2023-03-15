@@ -11,7 +11,6 @@
     "@types/node": "^16.18.16",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "eslint": "^5.6.0",
     "eslint-config-react-app": "^7.0.1",
     "postcss": "^8.4.21",
     "react": "^18.2.0",
@@ -26,13 +25,8 @@
     "deploy": "gh-pages -d build",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "eslint": "eslint ./src"
   },
   "browserslist": {
     "production": [
@@ -47,6 +41,13 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "eslint": "^8.36.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
     "gh-pages": "^5.0.0"
   }
 }
