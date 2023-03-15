@@ -2,14 +2,15 @@ name: Continuous Deployment (CD)
 
 on:
   workflow_run:
-    workflows: [ "Continuous Integration (CI)" ]
-    types: [ completed ]
+    workflows: [Continuous Integration (CI)]
+    types: [completed]
     branches:
       - main
 
 jobs:
-  deploy:
+  on-success:
     runs-on: ubuntu-22.04
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout to the repository
         uses: actions/checkout@v2
@@ -42,3 +43,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo "First workflow was a failure"
