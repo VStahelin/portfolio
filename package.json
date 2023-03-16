@@ -4,16 +4,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/css-modules": "^1.0.2",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.16",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "autoprefixer": "^10.4.14",
+    "babel-plugin-react-css-modules": "^5.2.6",
+    "classnames": "^2.3.2",
     "eslint-config-react-app": "^7.0.1",
-    "postcss": "^8.4.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.0",
-    "typescript": "^4.9.5",
+    "typescript-plugin-css-modules": "^4.2.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,12 +45,25 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "css-loader": "^6.7.3",
     "eslint": "^8.36.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
+    "postcss-color-function": "^4.1.0",
+    "postcss-css-variables": "^0.18.0",
+    "postcss-custom-media": "^9.1.2",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "postcss-preset-env": "^8.0.1",
+    "style-loader": "^3.3.2",
+    "stylelint": "^15.2.0",
+    "stylelint-config-standard-scss": "^7.0.1",
+    "typescript": "^4.9.5"
   }
 }
