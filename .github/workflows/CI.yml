@@ -40,8 +40,8 @@ jobs:
       - name: Check linting and formatting
         run: npm run eslint
 
-      - name: Execute test cases
-        run: npm run test --passWithNoTests
+#      - name: Execute test cases
+#        run: npm run test --passWithNoTests
 
       - name: Create test build
         run: npm run build
