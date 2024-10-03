@@ -1,11 +1,22 @@
-import React from 'react'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Footer from "./components/footer/index";
+import HomePage from "./components/pages/HomePage/HomePage";
+import AboutPage from "./components/pages/AboutPage/AboutPage";
 
-function App (): JSX.Element {
-  window.location.assign('https://www.linkedin.com/in/vitorjosestahelin/')
+const App: React.FC = () => {
   return (
-        <p>see u soon</p>
-  )
-}
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
+  );
+};
 
-export default App
+export default App;

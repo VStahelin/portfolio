@@ -1,0 +1,43 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all node_modules folders:
+node_modules
+
+# Ignore specific files:
+*.min.js
+*.map
+
+# Ignore all files in specific directories:
+public/
+dist/
+
+.env
+
+.eslintignore
+.eslintrc.js
+.eslintrc.json
+
+.github/
+.gitignore
+
+.husky/
+
+.nvmrc
+
+.prettierignore
+.prettierrc.js
+.prettierrc.json
+
+.vscode/
+
+CHANGELOG.md
+
+CONTRIBUTING.md
+
+LICENSE
+
+CNAME
+
+README.md

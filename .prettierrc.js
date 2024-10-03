@@ -1,0 +1,9 @@
+export const arrowParens = "avoid";
+export const bracketSameLine = true;
+export const bracketSpacing = false;
+export const singleQuote = false;
+export const trailingComma = "all";
+export const tabWidth = 2;
+export const useTabs = false;
+export const semi = true;
+export const printWidth = 80;
