@@ -41,10 +41,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-
-  on-failure:
-    runs-on: ubuntu-22.04
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    steps:
-      - name: Notify failure
-        run: echo "First workflow was a failure"
