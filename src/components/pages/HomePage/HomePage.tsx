@@ -1,6 +1,18 @@
-import React from "react";
+import { DataContext } from "../../../context/DataAPIContext";
+import React, { useContext } from "react";
 
 const HomePage: React.FC = () => {
+  const context = useContext(DataContext);
+
+  if (!context) {
+    throw new Error("HomePage must be used within a DataProvider");
+  }
+
+  const { portifolio, loading, error } = context;
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <>
       <div className="flex h-screen justify-center items-center bg-gray-100">
@@ -19,17 +31,16 @@ const HomePage: React.FC = () => {
           </button>
         </div>
       </div>
+
       <div className="flex h-screen justify-center items-center bg-white">
         <div className="max-w-2xl text-center">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">About Me</h2>
           <p className="text-xl text-gray-700">
-            I am a passionate developer with experience in building web
-            applications using modern technologies. I love to learn and explore
-            new tools and frameworks to improve my skills and deliver
-            high-quality software solutions.
+            {portifolio?.about_me.summary}
           </p>
         </div>
       </div>
+
       <div className="flex flex-col items-center bg-white py-16">
         <h2 className="text-4xl font-bold text-gray-800 mb-8">My Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -47,6 +58,7 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
+
       <div className="flex h-screen justify-center items-center bg-gray-100">
         <div className="max-w-2xl text-center">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">Experience</h2>

@@ -1,6 +1,7 @@
 declare module "*.svg?inline" {
   const content: string;
-  export default content;
+  const defaultContent: string;
+  export { content as default, defaultContent };
 }
 
 declare module "*.svg" {
