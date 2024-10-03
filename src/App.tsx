@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/footer/index";
+import Footer from "./components/molecules/footer/index";
 import HomePage from "./components/pages/HomePage/HomePage";
 import AboutPage from "./components/pages/AboutPage/AboutPage";
 import { DataProvider } from "./context/DataAPIContext";
