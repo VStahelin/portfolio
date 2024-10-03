@@ -33,12 +33,6 @@ const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     fetchData();
   }, []);
 
-  // get base url for gh-pages
-  const gh_page_base_url =
-    window.location.hostname === "localhost" ? "" : "/portfolio";
-
-  console.log("gh_page_base_url", gh_page_base_url);
-
   return (
     <DataContext.Provider value={{ portifolio, loading, error }}>
       {children}

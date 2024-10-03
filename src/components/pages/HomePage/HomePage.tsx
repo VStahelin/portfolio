@@ -25,7 +25,7 @@ const HomePage: React.FC = () => {
           </p>
           <button
             className="px-6 py-3 bg-blue-600 text-white rounded-full text-lg hover:bg-blue-700"
-            onClick={() => (window.location.href = "/about")}
+            onClick={() => window.location.assign("/about")}
           >
             Get Started
           </button>
