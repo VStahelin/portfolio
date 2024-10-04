@@ -12,6 +12,7 @@
     "axios": "^1.7.7",
     "cargo": "^0.8.0",
     "craco-alias": "^3.0.1",
+    "eslint-config-airbnb": "^19.0.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
@@ -27,9 +28,9 @@
     "test": "craco test --passWithNoTests",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "prettier": "prettier --write ."
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lintfix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\" --config ./.prettierrc.js"
   },
   "browserslist": {
     "production": [
@@ -59,6 +60,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-promise": "^6.6.0",
     "eslint-plugin-react": "^7.37.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "gh-pages": "^6.1.1",
     "globals": "^15.10.0",
     "husky": "^8.0.0",
