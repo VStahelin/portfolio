@@ -14,7 +14,9 @@ export interface Portifolio {
 export interface AboutMe {
   name: string;
   title: string;
+  profile_photo_url: string;
   summary: string;
+  short_summary: string;
   contact: Contact;
   certifications: Certification[];
   education: Education[];

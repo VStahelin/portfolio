@@ -57,7 +57,7 @@ const HomePage: React.FC = () => {
     <div className="bg-back min-h-screen">
       <nav className="bg-transparent py-5">{navList}</nav>
       <div id="hero">
-        <Hero />
+        <Hero about_data={portifolio?.about_me || null} />
       </div>
       <div id="about-me">
         <AboutMeSection about_data={portifolio?.about_me || null} />
