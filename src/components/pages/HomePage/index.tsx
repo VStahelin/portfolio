@@ -55,7 +55,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="bg-back min-h-screen">
-      <nav className="bg-transparent py-5">{navList}</nav>
+      <nav className="bg-transparent py-5 mb-5">{navList}</nav>
       <div id="hero">
         <Hero about_data={portifolio?.about_me || null} />
       </div>

@@ -28,7 +28,7 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
   };
 
   const mobileAboutMe = (
-    <div className="flex h-screen justify-center items-top mt-44">
+    <div className="flex h-screen justify-center items-top">
       <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="max-w-xs">
@@ -106,7 +106,7 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
       }}
     >
       <div className="container mx-8">
-        {isMobile ? mobileAboutMe : desktopAboutMe}
+        {isMobile.isMobile ? mobileAboutMe : desktopAboutMe}
       </div>
     </div>
   );
