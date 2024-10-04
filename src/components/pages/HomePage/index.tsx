@@ -1,4 +1,5 @@
-import { DataContext } from "../../../context/DataAPIContext";
+import { DataContext } from "@context/DataAPIContext";
+import { BaseUrlConxtex } from "@context/GlobalValues";
 import React, { useContext } from "react";
 
 const HomePage: React.FC = () => {
@@ -13,6 +14,8 @@ const HomePage: React.FC = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  const BaseUrl = useContext(BaseUrlConxtex);
+
   return (
     <>
       <div className="flex h-screen justify-center items-center bg-gray-100">
@@ -25,7 +28,7 @@ const HomePage: React.FC = () => {
           </p>
           <button
             className="px-6 py-3 bg-blue-600 text-white rounded-full text-lg hover:bg-blue-700"
-            onClick={() => window.location.assign("/about")}
+            onClick={() => window.location.assign(`${BaseUrl}/about`)}
           >
             Get Started
           </button>

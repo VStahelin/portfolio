@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./src",
+      "paths": {
+        "@pages/*": ["components/pages/*"],
+        "@molecules/*": ["components/molecules/*"],
+        "@components/*": ["components/*"],
+        "@ui/*": ["components/common/ui/*"],
+        "@hooks/*": ["hooks/*"],
+        "@api/*": ["api/*"],
+        "@utils/*": ["utils/*"],
+        "@context/*": ["context/*"],
+        "@interfaces/*": ["interfaces/*"]
+      }
+    }
+  }
+  

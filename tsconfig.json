@@ -15,11 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
-    "paths": {
-      "@context/*": ["context/*"]
-    }
+    "baseUrl": "./src", 
   },
   "files": ["custom.d.ts"],
-  "include": ["src", "custom.d.ts"]
+  "include": ["src", "custom.d.ts"],
+  "extends": "./tsconfig.paths.json"
 }
