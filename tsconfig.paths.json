@@ -10,7 +10,8 @@
         "@api/*": ["api/*"],
         "@utils/*": ["utils/*"],
         "@context/*": ["context/*"],
-        "@interfaces/*": ["interfaces/*"]
+        "@interfaces/*": ["interfaces/*"],
+        "@assets/*": ["assets/*"]
       }
     }
   }

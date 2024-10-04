@@ -1,6 +1,7 @@
-import CracoAlias from "craco-alias";
+/* eslint-disable @typescript-eslint/no-require-imports */
+const CracoAlias = require("craco-alias");
 
-export default {
+module.exports = {
   plugins: [
     {
       plugin: CracoAlias,
