@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-require-imports */
 const CracoAlias = require("craco-alias");
 
