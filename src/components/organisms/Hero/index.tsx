@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import background from "@assets/images/background.svg";
 import { AboutMe } from "@interfaces/interfaces";
 import { extractFileIdFromGDriveUrl } from "@utils/gdrive";
