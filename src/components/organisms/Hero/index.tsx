@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import background from "@assets/images/background.svg";
 import { AboutMe } from "@interfaces/interfaces";
-import { extractFileIdFromGDriveUrl } from "@utils/gdrive";
 import { ScreenSizeContext } from "@context/Mobile";
 
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
