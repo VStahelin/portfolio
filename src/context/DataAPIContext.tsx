@@ -16,7 +16,7 @@ const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://vstahelin.github.io/cms-portfolio/data.json",
+          "https://vstahelin.github.io/cms-portfolio/data/profile.json",
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

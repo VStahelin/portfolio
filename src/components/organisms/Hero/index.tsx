@@ -84,7 +84,7 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
         <h1 className="text-5xl text-left mb-4">
           <span className="text-white">{about_data?.title}</span>
         </h1>
-        <p className="text-left mb-4">{about_data?.short_summary}</p>
+        <p className="text-left text-white mb-4">{about_data?.short_summary}</p>
       </div>
       <div className="flex basis-1/3 justify-center items-center">
         <img
