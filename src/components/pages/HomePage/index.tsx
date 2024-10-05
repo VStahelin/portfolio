@@ -1,6 +1,7 @@
 import AboutMeSection from "@components/organisms/AboutMeSection";
 import Hero from "@components/organisms/Hero";
 import { DataContext } from "@context/DataAPIContext";
+import NavBar from "@molecules/Navbar";
 import React, { useContext } from "react";
 
 const HomePage: React.FC = () => {
@@ -15,48 +16,12 @@ const HomePage: React.FC = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const navList = (
-    <div className="container mx-auto flex justify-center items-center">
-      <div className="space-x-4">
-        <a
-          className="text-white-light hover:text-white-dark"
-          onClick={() => scrollToSection("about-me")}
-        >
-          About Me
-        </a>
-        <a
-          className="text-white-light hover:text-white-dark"
-          onClick={() => scrollToSection("projects")}
-        >
-          Portfolio
-        </a>
-        <a
-          className="text-white-light hover:text-white-dark"
-          onClick={() => scrollToSection("experiences")}
-        >
-          Experiences
-        </a>
-        <a
-          className="text-white-light hover:text-white-dark"
-          onClick={() => scrollToSection("footer")}
-        >
-          Get in Touch
-        </a>
-      </div>
-    </div>
-  );
-
   return (
     <div className="bg-back min-h-screen">
-      <nav className="bg-transparent py-5 mb-5">{navList}</nav>
-      <div id="hero">
+      <div id="navbar">
+        <NavBar />
+      </div>
+      <div id="hero" className="-pt-20">
         <Hero about_data={portifolio?.about_me || null} />
       </div>
       <div id="about-me">

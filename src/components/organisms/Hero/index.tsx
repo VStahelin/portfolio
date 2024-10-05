@@ -20,7 +20,7 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
   };
 
   const mobileAboutMe = (
-    <div className="flex h-screen justify-center items-top">
+    <div className="flex h-screen mt-52 justify-center items-top">
       <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="max-w-xs">
