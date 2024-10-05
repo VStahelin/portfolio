@@ -34,7 +34,7 @@ export default {
         white: {
           light: "#FFFFFF", // Branco
           DEFAULT: "#FFFFFF", // Branco
-          dark: "#F0F0F0", // Cinza claro
+          dark: "#f5f5f5", // Branco
         },
       },
     },

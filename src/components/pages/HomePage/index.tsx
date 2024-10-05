@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
       <div id="navbar">
         <NavBar />
       </div>
-      <div id="hero" className="-pt-20">
+      <div id="hero">
         <Hero about_data={portifolio?.about_me || null} />
       </div>
       <div id="about-me">

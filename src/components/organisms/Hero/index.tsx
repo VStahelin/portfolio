@@ -20,10 +20,10 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
   };
 
   const mobileAboutMe = (
-    <div className="flex h-screen mt-52 justify-center items-top">
+    <div className="flex h-screen justify-center items-center">
       <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="max-w-xs">
+          <div className="w-48">
             <div className="flex basis-1/3 justify-center items-center">
               <img
                 src={about_data?.profile_photo_url}
@@ -34,7 +34,8 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
           </div>
           <div className="flex-col basis-2/3 justify-left items-start mt-5">
             <h3 className="text-3xl text-left mb-1">
-              <text className="text-white-dark">Hi! My name is </text>
+              <text className="text-primary-light">Hi! </text>
+              <text className="text-white-dark">I&apos;m </text>
             </h3>
             <h1
               className="text-5xl font-bold text-left mb-3"
