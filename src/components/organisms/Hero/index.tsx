@@ -13,13 +13,6 @@ interface AboutMeSectionProps {
 const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
   const isMobile = useContext(ScreenSizeContext);
 
-  const profilePhotoUrl = () => {
-    const photo = extractFileIdFromGDriveUrl(
-      about_data?.profile_photo_url || "",
-    );
-    return `https://drive.google.com/thumbnail?id=${photo}&sz=w1000`;
-  };
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -34,7 +27,7 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
           <div className="max-w-xs">
             <div className="flex basis-1/3 justify-center items-center">
               <img
-                src={profilePhotoUrl()}
+                src={about_data?.profile_photo_url}
                 alt="background"
                 className="h-auto rounded-lg shadow-lg"
               />
@@ -88,7 +81,7 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
       </div>
       <div className="flex basis-1/3 justify-center items-center">
         <img
-          src={profilePhotoUrl()}
+          src={about_data?.profile_photo_url}
           alt="background"
           className=" h-auto rounded-lg shadow-lg"
         />
