@@ -19,7 +19,8 @@ const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
           "https://vstahelin.github.io/cms-portfolio/data/profile.json",
         );
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          console.log(response);
+          throw new Error("Could not fetch data");
         }
         const result: Portifolio = await response.json();
         setPortifolio(result);
