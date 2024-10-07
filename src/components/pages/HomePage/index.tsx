@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="bg-back min-h-screen">
-      <div className="fixed top-16 left-0 w-full bg-yellow-500 text-white text-center py-3 z-50">
+      <div className="fixed top-12 left-0 w-full bg-yellow-500 text-white text-center py-3 z-50">
         Esta página está sob construção.
       </div>
       <div id="navbar">
