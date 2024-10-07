@@ -7,6 +7,70 @@ interface AboutMeSectionProps {
   about_data: AboutMe | null;
 }
 
+const iconListTest = [
+  "react",
+  "node",
+  "django",
+  "python",
+  "javascript",
+  "typescript",
+  "html",
+  "css",
+  "java",
+  "php",
+  "ruby",
+  "c",
+  "c++",
+  "c#",
+  "go",
+  "rust",
+  "swift",
+  "kotlin",
+  "docker",
+  "kubernetes",
+  "mongodb",
+  "mysql",
+  "postgresql",
+  "graphql",
+  "aws",
+  "azure",
+  "firebase",
+  "git",
+  "github",
+  "gitlab",
+  "linux",
+  "windows",
+  "vscode",
+  "bash",
+  "markdown",
+  "api",
+  "scala",
+  "haskell",
+  "figma",
+  "sketch",
+  "adobexd",
+  "illustrator",
+  "photoshop",
+  "blender",
+  "unity",
+  "unrealengine",
+  "electron",
+  "nextjs",
+  "svelte",
+  "threejs",
+  "netlify",
+  "vercel",
+  "circleci",
+  "travisci",
+  "cloudflare",
+  "azuredevops",
+  "prometheus",
+  "grafana",
+  "openstack",
+  "pulumi",
+  "notfound",
+];
+
 const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
   return (
     <div className="relative flex min-h-screen justify-center items-center bg-tertiary">
@@ -32,30 +96,25 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
             <h1 className="text-5xl font-bold text-white mb-4 text-center pt-12">
               Skills-Sets
             </h1>
-
             <div className="flex justify-center mb-5">
               <div className="flex flex-wrap justify-center gap-4">
-                <StackCard
+                {/* <StackCard
                   icon="python"
                   title="Python"
                   experience="6 years"
                   progress={90}
                   projectLink="https://github.com/GomuGomuu/merry"
-                />
-                <StackCard
-                  icon="javascript"
-                  title="JavaScript"
-                  experience="3 years"
-                  progress={60}
-                  projectLink="https://github.com/VStahelin/portfolio"
-                />
-                <StackCard
-                  icon="api"
-                  title="API Rest"
-                  experience="4 years"
-                  progress={85}
-                  projectLink="https://github.com/GomuGomuu/merry"
-                />
+                /> */}
+                {iconListTest.map((stack, index) => (
+                  <StackCard
+                    key={index}
+                    icon={stack}
+                    title={stack}
+                    experience={`${Math.floor(Math.random() * 10)} years`} // to test
+                    progress={Math.floor(Math.random() * 100)} // to test
+                    projectLink={"https://github.com/Vstahelin"} // to test
+                  />
+                ))}
               </div>
             </div>
           </div>

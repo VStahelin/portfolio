@@ -21,6 +21,7 @@ export interface AboutMe {
   certifications: Certification[];
   education: Education[];
   soft_skills: string[];
+  stacks: string[];
 }
 
 export interface Contact {

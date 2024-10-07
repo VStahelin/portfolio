@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getIconComponent } from "@utils/iconMap";
+import Icon from "@components/atoms/Icon";
+import { getIconMapping } from "@utils/iconMap";
+import ProgressBar from "@components/atoms/ProgressBar";
 
 interface StackCardProps {
   icon: string;
   title: string;
   experience: string;
   progress: number;
-  projectLink: string;
+  projectLink: string | null;
 }
 
 const StackCard: React.FC<StackCardProps> = ({
@@ -15,12 +16,13 @@ const StackCard: React.FC<StackCardProps> = ({
   title,
   experience,
   progress,
-  projectLink,
+  projectLink = null,
 }) => {
   const [hovered, setHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  const IconComponent = getIconComponent(icon);
+  const { iconName, library } = getIconMapping(icon);
+  console.log(iconName, library, icon);
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,39 +35,33 @@ const StackCard: React.FC<StackCardProps> = ({
 
   return (
     <div
-      className={`relative w-64  bg-white shadow-lg rounded-lg overflow-hidden flex flex-col ${isMobile ? "h-72 items-center justify-start" : "h-64 items-center justify-center"}`}
+      className={`relative bg-white shadow-lg rounded-lg overflow-hidden flex flex-col ${isMobile ? "w-40 h-40 items-center justify-start" : "w-64 h-64 items-center justify-center"}`}
       onMouseEnter={() => !isMobile && setHovered(true)}
       onMouseLeave={() => !isMobile && setHovered(false)}
     >
       {isMobile ? (
-        <>
-          <div className="text-gray-800 -mb-5" style={{ fontSize: "6em" }}>
-            {IconComponent ? <FontAwesomeIcon icon={IconComponent} /> : null}
+        <a href={projectLink ?? undefined} className="block">
+          <div className="text-gray-800 -mb-5 mt-2">
+            <Icon
+              iconName={iconName}
+              library={library}
+              size={"6em"}
+              color="gray"
+            />
           </div>
-
-          <p className="mt-4 text-xl font-semibold text-gray-800">{title}</p>
-
           <div className="absolute inset-x-0 bottom-0 bg-gray-900 bg-opacity-90 flex flex-col items-center justify-center pb-2">
-            <h2 className="text-white text-lg mb-2 mt-2">{experience}</h2>
-
-            <div className="w-48 h-4 bg-gray-300 rounded-full overflow-hidden mb-4">
-              <div
-                className="bg-blue-500 h-full"
-                style={{ width: `${progress}%` }}
-              ></div>
-            </div>
-            <button
-              className="text-white"
-              onClick={() => window.open(projectLink, "_blank")}
-            >
-              &gt; See related projects &lt;
-            </button>
+            <h2 className="text-white text-lg mt-2">{experience}</h2>
           </div>
-        </>
+        </a>
       ) : (
         <>
           <div className="text-gray-800" style={{ fontSize: "7em" }}>
-            {IconComponent ? <FontAwesomeIcon icon={IconComponent} /> : null}
+            <Icon
+              iconName={iconName}
+              library={library}
+              size={60}
+              color="gray"
+            />
           </div>
 
           <p className="mt-4 text-xl font-semibold text-gray-800">{title}</p>
@@ -77,16 +73,21 @@ const StackCard: React.FC<StackCardProps> = ({
           >
             <h2 className="text-white text-lg text-bold mb-2">{experience}</h2>
 
-            <div className="w-48 h-4 bg-gray-300 rounded-full overflow-hidden mb-4">
-              <div
-                className="bg-blue-500 h-full"
-                style={{ width: `${progress}%` }}
-              ></div>
+            <div className="h-4 w-32">
+              <text className="text-white">Experience</text>
+              <ProgressBar
+                progress={progress}
+                width="100%"
+                height="1rem"
+                bgColor="bg-gray-300"
+                progressColor="bg-blue-500"
+                className="shadow-lg border-2"
+              />
             </div>
 
             <button
-              className="text-white hover:text-blue-400 transition duration-300"
-              onClick={() => window.open(projectLink, "_blank")}
+              className="text-white hover:text-blue-400 transition duration-300 mt-7"
+              onClick={() => projectLink && window.open(projectLink, "_blank")}
             >
               See related projects
             </button>
