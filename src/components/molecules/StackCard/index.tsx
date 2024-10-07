@@ -22,7 +22,6 @@ const StackCard: React.FC<StackCardProps> = ({
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const { iconName, library } = getIconMapping(icon);
-  console.log(iconName, library, icon);
 
   useEffect(() => {
     const handleResize = () => {
