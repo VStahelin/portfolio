@@ -33,37 +33,39 @@ const StackCard: React.FC<StackCardProps> = ({
   }, []);
 
   return (
-    <div
-      className={`relative bg-white shadow-lg rounded-lg overflow-hidden flex flex-col ${isMobile ? "w-40 h-40 items-center justify-start" : "w-64 h-64 items-center justify-center"}`}
-      onMouseEnter={() => !isMobile && setHovered(true)}
-      onMouseLeave={() => !isMobile && setHovered(false)}
-    >
+    <>
       {isMobile ? (
-        <a href={projectLink ?? undefined} className="block">
-          <div className="text-gray-800 -mb-5 mt-2">
-            <Icon
-              iconName={iconName}
-              library={library}
-              size={"6em"}
-              color="gray"
-            />
-          </div>
-          <div className="absolute inset-x-0 bottom-0 bg-gray-900 bg-opacity-90 flex flex-col items-center justify-center pb-2">
-            <h2 className="text-white text-lg mt-2">{experience}</h2>
-          </div>
-        </a>
+        <div className="relative bg-quaternary-light shadow-lg rounded-lg overflow-hidden flex flex-col w-40 h-40 items-center justify-start">
+          <a href={projectLink ?? undefined} className="block">
+            <div className="text-gray-800 -mb-5 mt-2">
+              <Icon
+                iconName={iconName}
+                library={library}
+                size={"6em"}
+                gradientColors={["#FF4C58", "#6572CC"]}
+              />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 bg-quaternary bg-opacity-90 flex flex-col items-center justify-center pb-2">
+              <h2 className="text-white text-lg mt-2">{experience}</h2>
+            </div>
+          </a>
+        </div>
       ) : (
-        <>
-          <div className="text-gray-800" style={{ fontSize: "7em" }}>
+        <div
+          className="relative bg-quaternary shadow-lg rounded-lg overflow-hidden flex flex-col w-64 h-64 items-center justify-center"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          <div>
             <Icon
               iconName={iconName}
               library={library}
-              size={60}
-              color="gray"
+              size={"7em"}
+              gradientColors={["#FF4C58", "#6572CC"]}
             />
           </div>
 
-          <p className="mt-4 text-xl font-semibold text-gray-800">{title}</p>
+          <p className="mt-4 text-xl font-semibold text-white">{title}</p>
 
           <div
             className={`absolute inset-0 bg-gray-900 bg-opacity-90 flex flex-col items-center justify-center transition-opacity duration-300 ${
@@ -79,8 +81,8 @@ const StackCard: React.FC<StackCardProps> = ({
                 width="100%"
                 height="1rem"
                 bgColor="bg-gray-300"
-                progressColor="bg-blue-500"
-                className="shadow-lg border-2"
+                progressColor="bg-primary"
+                className="shadow-lg"
               />
             </div>
 
@@ -91,9 +93,9 @@ const StackCard: React.FC<StackCardProps> = ({
               See related projects
             </button>
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

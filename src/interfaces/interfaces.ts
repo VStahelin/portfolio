@@ -21,7 +21,13 @@ export interface AboutMe {
   certifications: Certification[];
   education: Education[];
   soft_skills: string[];
-  stacks: string[];
+  stack_proficiency: StackProficiency[];
+}
+
+export interface StackProficiency {
+  name: string;
+  level: string;
+  years: number;
 }
 
 export interface Contact {

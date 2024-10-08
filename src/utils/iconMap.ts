@@ -213,6 +213,7 @@ export const getIconMapping = (iconKey: string): IconMapping => {
     case "amazon web services":
     case "amazonwebservices":
     case "aws_services":
+    case "aws services":
       return {
         iconName: ProgrammingIconMap.AWS,
         library: IconLibraryList.FontAwesome,

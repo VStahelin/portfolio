@@ -27,15 +27,30 @@ interface IconProps {
   iconName: string;
   library?: string;
   size?: string | number;
+  gradientColors?: [string, string];
   color?: string;
   className?: string;
   style?: React.CSSProperties;
 }
 
+const GradientDefs: React.FC<{ colors?: [string, string] }> = ({ colors }) => {
+  if (!colors) return null;
+
+  return (
+    <svg width="0" height="0">
+      <linearGradient id="custom-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
+        <stop stopColor={colors[0]} offset="30%" />
+        <stop stopColor={colors[1]} offset="100%" />
+      </linearGradient>
+    </svg>
+  );
+};
+
 const Icon: React.FC<IconProps> = ({
   iconName,
   library = IconLibraryList.FontAwesome,
   size = 24,
+  gradientColors,
   color = "black",
   className,
   style,
@@ -117,10 +132,24 @@ const Icon: React.FC<IconProps> = ({
   }
 
   return (
-    <IconComponent
-      className={className}
-      style={{ fontSize: size, color, ...style }}
-    />
+    <>
+      <GradientDefs colors={gradientColors} />{" "}
+      <div
+        className={className}
+        style={{
+          fontSize: size,
+          ...style,
+        }}
+      >
+        <IconComponent
+          style={{
+            fill: gradientColors ? "url(#custom-gradient)" : color,
+            stroke: gradientColors ? "url(#custom-gradient)" : color,
+            strokeWidth: gradientColors ? 0 : undefined,
+          }}
+        />
+      </div>
+    </>
   );
 };
 

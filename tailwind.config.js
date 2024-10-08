@@ -27,8 +27,8 @@ export default {
           dark: "#0E0F18", // Azul/cinza muito escuro
         },
         quaternary: {
-          light: "#292A34", // Cinza escuro
-          DEFAULT: "#12131b", // Azul/cinza muito escuro
+          light: "#1f2133", // Azul/cinza muito escuro
+          DEFAULT: "#151721", // Azul/cinza muito escuro
           dark: "#000000", // Preto
         },
         white: {
