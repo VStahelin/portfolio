@@ -5,6 +5,8 @@
         "@pages/*": ["components/pages/*"],
         "@molecules/*": ["components/molecules/*"],
         "@components/*": ["components/*"],
+        "@atoms/*": ["components/atoms/*"],
+        "@organisms/*": ["components/organisms/*"],
         "@ui/*": ["components/common/ui/*"],
         "@hooks/*": ["hooks/*"],
         "@api/*": ["api/*"],

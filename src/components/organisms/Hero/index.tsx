@@ -10,7 +10,7 @@ interface AboutMeSectionProps {
 }
 
 const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
-  const isMobile = useContext(ScreenSizeContext);
+  const screen = useContext(ScreenSizeContext);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -99,7 +99,7 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
       }}
     >
       <div className="container mx-8">
-        {isMobile.isMobile ? mobileAboutMe : desktopAboutMe}
+        {screen.isMobile ? mobileAboutMe : desktopAboutMe}
       </div>
     </div>
   );

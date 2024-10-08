@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Icon from "@components/atoms/Icon";
+import React, { useState, useContext } from "react";
+import Icon from "@atoms/Icon";
 import { getIconMapping } from "@utils/iconMap";
-import ProgressBar from "@components/atoms/ProgressBar";
+import ProgressBar from "@atoms/ProgressBar";
+import { ScreenSizeContext } from "@context/Mobile";
 
 interface StackCardProps {
   icon: string;
@@ -19,22 +20,12 @@ const StackCard: React.FC<StackCardProps> = ({
   projectLink = null,
 }) => {
   const [hovered, setHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
   const { iconName, library } = getIconMapping(icon);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const screen = useContext(ScreenSizeContext);
 
   return (
     <>
-      {isMobile ? (
+      {screen.isMobile ? (
         <div className="relative bg-quaternary-light shadow-lg rounded-lg overflow-hidden flex flex-col w-40 h-40 items-center justify-start">
           <a href={projectLink ?? undefined} className="block">
             <div className="text-gray-800 -mb-5 mt-2">

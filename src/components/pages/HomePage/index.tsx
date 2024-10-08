@@ -1,8 +1,9 @@
-import AboutMeSection from "@components/organisms/AboutMeSection";
-import Hero from "@components/organisms/Hero";
+import AboutMeSection from "@organisms/AboutMeSection";
+import Hero from "@organisms/Hero";
 import { DataContext } from "@context/DataAPIContext";
 import NavBar from "@molecules/Navbar";
 import React, { useContext } from "react";
+import Notification from "@organisms/Notification";
 
 const HomePage: React.FC = () => {
   const context = useContext(DataContext);
@@ -18,10 +19,11 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="bg-back min-h-screen">
-      <div className="fixed top-12 left-0 w-full bg-yellow-500 text-white text-center py-3 z-50">
-        This portfolio is a work in progress. Some features may not work as
-        expected.
-      </div>
+      <Notification
+        message="This portfolio is a work in progress. Some features may not work as
+        expected."
+        duration={5000}
+      />
       <div id="navbar">
         <NavBar />
       </div>
