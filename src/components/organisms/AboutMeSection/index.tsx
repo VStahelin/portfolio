@@ -8,6 +8,7 @@ interface AboutMeSectionProps {
 }
 
 const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
+  console.log(about_data?.summary);
   return (
     <div className="relative flex min-h-screen justify-center items-center bg-tertiary">
       <div
@@ -26,7 +27,12 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
             <h2 className="text-4xl font-bold text-white mb-4 text-left pb-8">
               About Me
             </h2>
-            <p className="text-xl text-white">{about_data?.summary}</p>
+            <div
+              className="text-xl text-white max-w-5xl mx-auto"
+              style={{ whiteSpace: "pre-line" }}
+            >
+              {about_data?.summary}
+            </div>
           </div>
           <div>
             <h1 className="text-5xl font-bold text-white mb-4 text-center pt-12">
