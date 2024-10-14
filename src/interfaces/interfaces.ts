@@ -61,6 +61,7 @@ export interface ProfessionalExperience {
 }
 
 export interface Project {
+  order_id: number;
   name: string;
   dates: string;
   description: string;
@@ -68,8 +69,21 @@ export interface Project {
   technologies?: string[];
   instagram?: string | null;
   github?: string | null;
-  key_words?: string[] | null;
+  tags?: string[];
+  project_url?: string | null;
+  thumbnail: string;
 }
+
+export interface ProjectSectionProps {
+  id: number;
+  title: string;
+  tags: string[];
+  description: string;
+  thumbnail: string;
+  project_url: string;
+  order_id: number;
+}
+
 
 export interface Stack {
   name: string;

@@ -2,8 +2,9 @@ import AboutMeSection from "@organisms/AboutMeSection";
 import Hero from "@organisms/Hero";
 import { DataContext } from "@context/DataAPIContext";
 import NavBar from "@molecules/Navbar";
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import Notification from "@organisms/Notification";
+import Projects from "@components/organisms/Projects";
 
 const HomePage: React.FC = () => {
   const context = useContext(DataContext);
@@ -16,6 +17,41 @@ const HomePage: React.FC = () => {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
+
+  const { tags, projects } = useMemo(() => {
+    if (!portifolio) {
+      return { tags: [], projects: [] };
+    }
+
+    const tagCount: { [key: string]: number } = {};
+
+    portifolio.projects.forEach((project) => {
+      project.tags?.forEach((tag) => {
+        if (tag) {
+          tagCount[tag] = (tagCount[tag] || 0) + 1;
+        }
+      });
+    });
+
+    const sortedTags = Object.entries(tagCount)
+      .sort(([, countA], [, countB]) => countB - countA)
+      .map(([tag]) => tag);
+
+    const projects = portifolio.projects.map((project) => ({
+      id: project.order_id,
+      title: project.name,
+      description: project.description,
+      tags: project.tags || [],
+      thumbnail: project.thumbnail,
+      project_url: project.project_url || "",
+      order_id: project.order_id,
+    }));
+
+    return { tags: sortedTags, projects };
+  }, [portifolio]);
+
+  console.log(tags);
+  console.log(projects);
 
   return (
     <div className="bg-back min-h-screen">
@@ -33,25 +69,7 @@ const HomePage: React.FC = () => {
       <div id="about-me">
         <AboutMeSection about_data={portifolio?.about_me || null} />
       </div>
-      <div id="projects">
-        <div className="flex flex-col items-center bg-gray-50 py-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-8">My Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-200 p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold mb-4">Project 1</h3>
-              <p className="text-gray-700">Description of project 1.</p>
-            </div>
-            <div className="bg-gray-200 p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold mb-4">Project 2</h3>
-              <p className="text-gray-700">Description of project 2.</p>
-            </div>
-            <div className="bg-gray-200 p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-semibold mb-4">Project 3</h3>
-              <p className="text-gray-700">Description of project 3.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Projects projects={projects} tags={tags} />
       <div id="experiences">
         <div className="flex h-screen justify-center items-center bg-gray-100">
           <div className="max-w-2xl text-center">
