@@ -48,11 +48,11 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
             </p>
             <div className="flex space-x-4 mt-4">
               <Link
-                to={`mailto:${about_data?.contact.email}`}
+                to={about_data?.contact.linkedin || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaEnvelope className="h-8 w-8 text-white" />
+                <FaLinkedin className="h-8 w-8 text-white" />
               </Link>
               <Link
                 to={about_data?.contact.github || "#"}
@@ -62,11 +62,11 @@ const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
                 <FaGithub className="h-8 w-8 text-white" />
               </Link>
               <Link
-                to={about_data?.contact.linkedin || "#"}
+                to={`mailto:${about_data?.contact.email}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaLinkedin className="h-8 w-8 text-white" />
+                <FaEnvelope className="h-8 w-8 text-white" />
               </Link>
             </div>
           </div>

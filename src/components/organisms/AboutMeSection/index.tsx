@@ -35,7 +35,7 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
           </div>
           <div>
             <h1 className="text-4xl font-bold text-white mb-4 text-center pt-12">
-              Principal Technologies
+              Mail Technologies
             </h1>
             <div className="flex justify-center mb-5">
               <div className="flex flex-wrap justify-center gap-4">
