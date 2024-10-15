@@ -139,6 +139,8 @@ const Projects: React.FC<ProjectsProps> = ({ projects, tags }) => {
               <div className="flex justify-center mt-2">
                 <Link
                   to={project.project_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-500 px-6 py-2 rounded-full"
                 >
                   See more
