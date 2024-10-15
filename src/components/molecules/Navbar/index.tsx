@@ -52,19 +52,20 @@ const NavBar: React.FC = () => {
       >
         <div className="space-x-4">
           <button
-            className="text-white-light hover:text-quaternary transition-colors font-bold"
+            className="text-white-light hover:text-tertiary-light transition-colors font-bold"
             onClick={() => scrollToSection("about-me")}
           >
             About Me
           </button>
           <button
-            className="text-white-light hover:text-quaternary transition-colors font-bold"
+            className="text-white-light hover:text-tertiary-light
+             transition-colors font-bold"
             onClick={() => scrollToSection("projects")}
           >
             Portfolio
           </button>
           <button
-            className="text-white-light hover:text-quaternary transition-colors font-bold"
+            className="text-white-light hover:text-tertiary-light transition-colors font-bold"
             onClick={() => scrollToSection("experiences")}
           >
             Experiences

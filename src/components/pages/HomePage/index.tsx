@@ -2,9 +2,9 @@ import AboutMeSection from "@organisms/AboutMeSection";
 import Hero from "@organisms/Hero";
 import NavBar from "@molecules/Navbar";
 import React, { useMemo } from "react";
-import Notification from "@organisms/Notification";
 import Projects from "@components/organisms/Projects";
 import { Portifolio } from "@interfaces/interfaces";
+import ExperienceList from "@components/organisms/ExperienceList";
 
 interface HomePageProps {
   portifolio: Portifolio | null;
@@ -45,11 +45,11 @@ const HomePage: React.FC<HomePageProps> = ({ portifolio }) => {
 
   return (
     <div className="bg-back min-h-screen">
-      <Notification
+      {/* <Notification
         message="This portfolio is a work in progress. Some features may not work as
         expected."
         duration={5000}
-      />
+      /> */}
       <div id="navbar">
         <NavBar />
       </div>
@@ -59,47 +59,13 @@ const HomePage: React.FC<HomePageProps> = ({ portifolio }) => {
       <div id="about-me">
         <AboutMeSection about_data={portifolio?.about_me || null} />
       </div>
-      <Projects projects={projects} tags={tags} />
+      <div id="projects">
+        <Projects projects={projects} tags={tags} />
+      </div>
       <div id="experiences">
-        <div className="flex h-screen justify-center items-center bg-gray-100">
-          <div className="max-w-2xl text-center">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Experience
-            </h2>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-semibold text-blue-600">
-                  Job Title 1
-                </h3>
-                <p className="text-gray-700">Company Name</p>
-                <p className="text-gray-700">Duration</p>
-                <p className="text-gray-700">
-                  Description of responsibilities and achievements.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-blue-600">
-                  Job Title 2
-                </h3>
-                <p className="text-gray-700">Company Name</p>
-                <p className="text-gray-700">Duration</p>
-                <p className="text-gray-700">
-                  Description of responsibilities and achievements.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-blue-600">
-                  Job Title 3
-                </h3>
-                <p className="text-gray-700">Company Name</p>
-                <p className="text-gray-700">Duration</p>
-                <p className="text-gray-700">
-                  Description of responsibilities and achievements.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ExperienceList
+          experiences={portifolio?.professional_experience || []}
+        />
       </div>
     </div>
   );

@@ -26,7 +26,6 @@ const Projects: React.FC<ProjectsProps> = ({ projects, tags }) => {
 
   return (
     <div
-      id="projects"
       className="container mx-auto py-8 px-4 min-h-screen flex flex-col justify-center items-center"
       style={{
         backgroundImage: `url(${background})`,

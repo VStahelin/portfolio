@@ -22,20 +22,20 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
 
       <div className="relative max-w-7xl px-8">
         <div className="relative">
-          <div className="mt-4">
-            <h2 className="text-4xl font-bold text-white mb-4 text-left pb-8">
+          <div className="mt-10">
+            <h2 className="text-4xl font-bold text-white mb-4 pb-8 text-center md:text-left">
               About Me
             </h2>
             <div
-              className="text-xl text-white max-w-5xl mx-auto"
+              className="text-white max-w-5xl mx-auto"
               style={{ whiteSpace: "pre-line" }}
             >
               {about_data?.summary}
             </div>
           </div>
           <div>
-            <h1 className="text-5xl font-bold text-white mb-4 text-center pt-12">
-              Skills-Sets
+            <h1 className="text-4xl font-bold text-white mb-4 text-center pt-12">
+              Principal Technologies
             </h1>
             <div className="flex justify-center mb-5">
               <div className="flex flex-wrap justify-center gap-4">

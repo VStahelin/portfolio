@@ -57,7 +57,8 @@ export interface ProfessionalExperience {
   location: string;
   dates: string;
   responsibilities: string[];
-  key_words: string[];
+  tags: string[];
+  profile_photo_url: string;
 }
 
 export interface Project {
