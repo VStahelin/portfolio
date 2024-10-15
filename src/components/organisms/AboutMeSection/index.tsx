@@ -8,7 +8,6 @@ interface AboutMeSectionProps {
 }
 
 const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
-  console.log(about_data?.summary);
   return (
     <div className="relative flex min-h-screen justify-center items-center bg-tertiary">
       <div

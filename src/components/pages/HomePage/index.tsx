@@ -50,9 +50,6 @@ const HomePage: React.FC = () => {
     return { tags: sortedTags, projects };
   }, [portifolio]);
 
-  console.log(tags);
-  console.log(projects);
-
   return (
     <div className="bg-back min-h-screen">
       <Notification
