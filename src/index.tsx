@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { GlobalValues } from "@context/GlobalValues";
 import { ScreenSizeProvider } from "@context/Mobile";
+import { DataProvider } from "@context/DataAPIContext";
 
 const rootElement = document.getElementById("root");
 
@@ -13,7 +14,9 @@ if (rootElement !== null) {
     <React.StrictMode>
       <ScreenSizeProvider>
         <GlobalValues>
-          <App />
+          <DataProvider>
+            <App />
+          </DataProvider>
         </GlobalValues>
       </ScreenSizeProvider>
     </React.StrictMode>,

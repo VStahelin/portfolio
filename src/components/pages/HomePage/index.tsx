@@ -1,23 +1,16 @@
 import AboutMeSection from "@organisms/AboutMeSection";
 import Hero from "@organisms/Hero";
-import { DataContext } from "@context/DataAPIContext";
 import NavBar from "@molecules/Navbar";
-import React, { useContext, useMemo } from "react";
+import React, { useMemo } from "react";
 import Notification from "@organisms/Notification";
 import Projects from "@components/organisms/Projects";
+import { Portifolio } from "@interfaces/interfaces";
 
-const HomePage: React.FC = () => {
-  const context = useContext(DataContext);
+interface HomePageProps {
+  portifolio: Portifolio | null;
+}
 
-  if (!context) {
-    throw new Error("HomePage must be used within a DataProvider");
-  }
-
-  const { portifolio, loading, error } = context;
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
+const HomePage: React.FC<HomePageProps> = ({ portifolio }) => {
   const { tags, projects } = useMemo(() => {
     if (!portifolio) {
       return { tags: [], projects: [] };
