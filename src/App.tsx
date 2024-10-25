@@ -1,50 +1,115 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
+import ReactGA from "react-ga4";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
+  useLocation,
 } from "react-router-dom";
-import "./App.css";
 
+import "./App.css";
 import { BaseUrlConxtex } from "@context/GlobalValues";
 import { DataContext } from "@context/DataAPIContext";
 import HomePage from "@pages/HomePage";
 import AboutPage from "@pages/AboutPage";
 import Footer from "@molecules/Footer";
+import Loading from "@molecules/Loading";
+
+type ContactType = {
+  email: string;
+  linkedin: string;
+  github: string;
+};
+
+type AboutMeType = {
+  contact: ContactType;
+};
+
+type PortifolioType = {
+  about_me: AboutMeType;
+};
+
+const PageTracking: React.FC = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.initialize("G-PBLYVGYSD9");
+    ReactGA.send({
+      hitType: "pageview",
+      page: location.pathname + location.search,
+    });
+  }, [location]);
+
+  return null;
+};
 
 const App: React.FC = () => {
   const BaseUrl = useContext(BaseUrlConxtex);
   const context = useContext(DataContext);
 
-  if (!context) {
-    throw new Error("useDataAPI must be used within a DataProvider");
+  const cachedData = useMemo(() => {
+    if (!context || context.loading) return null;
+    if (context.error) return null;
+
+    const portifolio: PortifolioType = context.portifolio as PortifolioType;
+
+    const about_me = portifolio?.about_me;
+    const contact = about_me?.contact;
+    return { about_me, contact };
+  }, [context?.loading, context?.error, context?.portifolio]);
+
+  useEffect(() => {
+    const handleDocumentClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const elementType = target.tagName.toLowerCase();
+      const elementId = target.id || "id-null";
+      const elementClass =
+        typeof target.className === "string" ? target.className : "";
+      const elementText = target.innerText || "text-null";
+
+      ReactGA.event({
+        category: "User Interaction",
+        action: `Click on ${elementType}`,
+        label: `ID: ${elementId}, Class: ${elementClass}, Text: ${elementText}`,
+      });
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
+  if (!cachedData) {
+    return <Loading />;
   }
 
-  const { portifolio, loading, error } = context;
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
-  const about_me = useMemo(() => portifolio?.about_me, [portifolio]);
-  const contact = useMemo(() => about_me?.contact, [about_me]);
+  const { contact } = cachedData;
 
   if (!contact) {
-    return <div>Informações de contato indisponíveis</div>;
+    return <div>Informations not found</div>;
   }
 
   const { email, linkedin, github } = contact;
 
   return (
     <Router>
+      <PageTracking />
       <div className="App">
         <Routes>
           <Route
             path={`${BaseUrl}/`}
-            element={<HomePage portifolio={portifolio} />}
+            element={
+              context ? (
+                <HomePage portifolio={context.portifolio} />
+              ) : (
+                <Loading />
+              )
+            }
           />
           <Route path={`${BaseUrl}/about`} element={<AboutPage />} />
-          <Route path="*" element={<Navigate to={`${BaseUrl}/`} />} />
+          <Route path="*" element={<Navigate to={`${BaseUrl}/`} replace />} />
         </Routes>
         <Footer github={github} linkedin={linkedin} email={email} />
       </div>

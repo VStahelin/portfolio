@@ -66,7 +66,7 @@ const StackCard: React.FC<StackCardProps> = ({
             <h2 className="text-white text-lg text-bold mb-2">{experience}</h2>
 
             <div className="h-4 w-32">
-              <text className="text-white">Experience</text>
+              <div className="text-white">Experience</div>
               <ProgressBar
                 progress={progress}
                 width="100%"
