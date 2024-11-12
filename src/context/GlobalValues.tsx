@@ -3,16 +3,16 @@ import React, { createContext } from "react";
 // const BaseUrl = window.location.hostname === "localhost" ? "" : "/portfolio";
 const BaseUrl = window.location.hostname === "localhost" ? "" : "";
 
-const BaseUrlConxtex = createContext(BaseUrl);
+const BaseUrlContext = createContext(BaseUrl);
 
 const GlobalValues: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   return (
-    <BaseUrlConxtex.Provider value={BaseUrl}>
+    <BaseUrlContext.Provider value={BaseUrl}>
       {children}
-    </BaseUrlConxtex.Provider>
+    </BaseUrlContext.Provider>
   );
 };
 
-export { BaseUrlConxtex, GlobalValues };
+export { BaseUrlContext, GlobalValues };

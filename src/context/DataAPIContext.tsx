@@ -1,4 +1,4 @@
-import { DataContextType, Portifolio } from "@interfaces/interfaces";
+import { DataContextType, Portfolio } from "@interfaces/interfaces";
 import React, { createContext, useEffect, useState, ReactNode } from "react";
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -8,7 +8,7 @@ interface DataProviderProps {
 }
 
 const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
-  const [portifolio, setPortifolio] = useState<Portifolio | null>(null);
+  const [portfolio, setPortfolio] = useState<Portfolio | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -16,14 +16,14 @@ const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://vstahelin.github.io/cms-portfolio/data/profile.json",
+          "https://vstahelin.github.io/cms-portfolio/data/profile.json"
         );
         if (!response.ok) {
           console.log(response);
           throw new Error("Could not fetch data");
         }
-        const result: Portifolio = await response.json();
-        setPortifolio(result);
+        const result: Portfolio = await response.json();
+        setPortfolio(result);
       } catch (error) {
         setError(error instanceof Error ? error : new Error("Unknown error"));
       } finally {
@@ -35,7 +35,7 @@ const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <DataContext.Provider value={{ portifolio, loading, error }}>
+    <DataContext.Provider value={{ portfolio, loading, error }}>
       {children}
     </DataContext.Provider>
   );

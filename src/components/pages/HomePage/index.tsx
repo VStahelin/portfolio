@@ -3,22 +3,22 @@ import Hero from "@organisms/Hero";
 import NavBar from "@molecules/Navbar";
 import React, { useMemo } from "react";
 import Projects from "@organisms/Projects";
-import { Portifolio } from "@interfaces/interfaces";
+import { Portfolio } from "@interfaces/interfaces";
 import ExperienceList from "@organisms/ExperienceList";
 
 interface HomePageProps {
-  portifolio: Portifolio | null;
+  portfolio: Portfolio | null;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ portifolio }) => {
+const HomePage: React.FC<HomePageProps> = ({ portfolio }) => {
   const { tags, projects } = useMemo(() => {
-    if (!portifolio) {
+    if (!portfolio) {
       return { tags: [], projects: [] };
     }
 
     const tagCount: { [key: string]: number } = {};
 
-    portifolio.projects.forEach((project) => {
+    portfolio.projects.forEach((project) => {
       project.tags?.forEach((tag) => {
         if (tag) {
           tagCount[tag] = (tagCount[tag] || 0) + 1;
@@ -30,7 +30,7 @@ const HomePage: React.FC<HomePageProps> = ({ portifolio }) => {
       .sort(([, countA], [, countB]) => countB - countA)
       .map(([tag]) => tag);
 
-    const projects = portifolio.projects.map((project) => ({
+    const projects = portfolio.projects.map((project) => ({
       id: project.order_id,
       title: project.name,
       description: project.description,
@@ -41,7 +41,7 @@ const HomePage: React.FC<HomePageProps> = ({ portifolio }) => {
     }));
 
     return { tags: sortedTags, projects };
-  }, [portifolio]);
+  }, [portfolio]);
 
   return (
     <div className="bg-back min-h-screen">
@@ -54,17 +54,17 @@ const HomePage: React.FC<HomePageProps> = ({ portifolio }) => {
         <NavBar />
       </div>
       <div id="hero">
-        <Hero about_data={portifolio?.about_me || null} />
+        <Hero about_data={portfolio?.about_me || null} />
       </div>
       <div id="about-me">
-        <AboutMeSection about_data={portifolio?.about_me || null} />
+        <AboutMeSection about_data={portfolio?.about_me || null} />
       </div>
       <div id="projects">
         <Projects projects={projects} tags={tags} />
       </div>
       <div id="experiences">
         <ExperienceList
-          experiences={portifolio?.professional_experience || []}
+          experiences={portfolio?.professional_experience || []}
         />
       </div>
     </div>

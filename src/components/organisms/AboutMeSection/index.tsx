@@ -54,7 +54,7 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
                             ? 50
                             : stack.level === "Beginner"
                               ? 25
-                              : 0,
+                              : 0
                     )}
                     projectLink={"https://github.com/Vstahelin"}
                   />

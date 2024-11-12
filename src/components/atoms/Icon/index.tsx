@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense, lazy } from "react";
 
 export enum IconLibraryList {
@@ -25,68 +26,68 @@ interface IconProps {
 
 const loadIcon = (
   library: IconLibraryList,
-  iconName: string,
+  iconName: string
 ): React.LazyExoticComponent<React.ComponentType<any>> | null => {
   switch (library) {
     case IconLibraryList.FontAwesome:
       return lazy(() =>
         import("react-icons/fa").then((module) => ({
           default: (module as any)[`Fa${capitalize(iconName)}`],
-        })),
+        }))
       );
     case IconLibraryList.GiIcons:
       return lazy(() =>
         import("react-icons/gi").then((module) => ({
           default: (module as any)[`Gi${capitalize(iconName)}`],
-        })),
+        }))
       );
     case IconLibraryList.SiIcons:
       return lazy(() =>
         import("react-icons/si").then((module) => ({
           default: (module as any)[`Si${capitalize(iconName)}`],
-        })),
+        }))
       );
     case IconLibraryList.DiIcons:
       return lazy(() =>
         import("react-icons/di").then((module) => ({
           default: (module as Record<string, any>)[`Di${capitalize(iconName)}`],
-        })),
+        }))
       );
     case IconLibraryList.Fa6Icons:
       return lazy(() =>
         import("react-icons/fa6").then((module) => ({
           default: (module as Record<string, any>)[`Fa${capitalize(iconName)}`],
-        })),
+        }))
       );
     case IconLibraryList.TbIcons:
       return lazy(() =>
         import("react-icons/tb").then((module) => ({
           default: (module as Record<string, any>)[`Tb${capitalize(iconName)}`],
-        })),
+        }))
       );
     case IconLibraryList.AiIcons:
       return lazy(() =>
         import("react-icons/ai").then((module) => ({
           default: (module as Record<string, any>)[`Ai${capitalize(iconName)}`],
-        })),
+        }))
       );
     case IconLibraryList.GrIcons:
       return lazy(() =>
         import("react-icons/gr").then((module) => ({
           default: (module as Record<string, any>)[`Gr${capitalize(iconName)}`],
-        })),
+        }))
       );
     case IconLibraryList.BiIcons:
       return lazy(() =>
         import("react-icons/bi").then((module) => ({
           default: (module as Record<string, any>)[`Bi${capitalize(iconName)}`],
-        })),
+        }))
       );
     case IconLibraryList.RiIcons:
       return lazy(() =>
         import("react-icons/ri").then((module) => ({
           default: (module as Record<string, any>)[`Ri${capitalize(iconName)}`],
-        })),
+        }))
       );
     default:
       return null;

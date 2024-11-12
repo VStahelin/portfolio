@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, MouseEvent } from "react";
 import ReactGA from "react-ga4";
 import {
   BrowserRouter as Router,
@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import { BaseUrlConxtex } from "@context/GlobalValues";
+import { BaseUrlContext } from "@context/GlobalValues";
 import { DataContext } from "@context/DataAPIContext";
 import HomePage from "@pages/HomePage";
 import AboutPage from "@pages/AboutPage";
@@ -26,7 +26,7 @@ type AboutMeType = {
   contact: ContactType;
 };
 
-type PortifolioType = {
+type PortfolioType = {
   about_me: AboutMeType;
 };
 
@@ -45,19 +45,19 @@ const PageTracking: React.FC = () => {
 };
 
 const App: React.FC = () => {
-  const BaseUrl = useContext(BaseUrlConxtex);
+  const BaseUrl = useContext(BaseUrlContext); // Fixed typo
   const context = useContext(DataContext);
 
   const cachedData = useMemo(() => {
     if (!context || context.loading) return null;
     if (context.error) return null;
 
-    const portifolio: PortifolioType = context.portifolio as PortifolioType;
+    const portfolio: PortfolioType = context.portfolio as PortfolioType; // Fixed typo
 
-    const about_me = portifolio?.about_me;
+    const about_me = portfolio?.about_me;
     const contact = about_me?.contact;
     return { about_me, contact };
-  }, [context?.loading, context?.error, context?.portifolio]);
+  }, [context?.loading, context?.error, context?.portfolio]);
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -102,7 +102,7 @@ const App: React.FC = () => {
             path={`${BaseUrl}/`}
             element={
               context ? (
-                <HomePage portifolio={context.portifolio} />
+                <HomePage portfolio={context.portfolio} /> // Fixed typo
               ) : (
                 <Loading />
               )

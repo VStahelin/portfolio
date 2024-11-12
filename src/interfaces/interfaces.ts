@@ -1,10 +1,10 @@
 export interface DataContextType {
-  portifolio: Portifolio | null;
+  portfolio: Portfolio | null;
   loading: boolean;
   error: Error | null;
 }
 
-export interface Portifolio {
+export interface Portfolio {
   about_me: AboutMe;
   professional_experience: ProfessionalExperience[];
   projects: Project[];
@@ -84,7 +84,6 @@ export interface ProjectSectionProps {
   project_url: string;
   order_id: number;
 }
-
 
 export interface Stack {
   name: string;
