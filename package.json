@@ -13,7 +13,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "vite test --passWithNoTests",
-    "prepare": "husky install",
+    "prepare": "husky",
     "lintfix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\" --config ./.prettierrc.js"
   },
@@ -57,6 +57,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "gh-pages": "^6.2.0",
     "globals": "^15.12.0",
+    "husky": "^9.1.6",
     "postcss": "^8.4.49",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.14",
