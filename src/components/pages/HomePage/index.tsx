@@ -2,9 +2,9 @@ import AboutMeSection from "@organisms/AboutMeSection";
 import Hero from "@organisms/Hero";
 import NavBar from "@molecules/Navbar";
 import React, { useMemo } from "react";
-import Projects from "@components/organisms/Projects";
+import Projects from "@organisms/Projects";
 import { Portifolio } from "@interfaces/interfaces";
-import ExperienceList from "@components/organisms/ExperienceList";
+import ExperienceList from "@organisms/ExperienceList";
 
 interface HomePageProps {
   portifolio: Portifolio | null;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const NavBar: React.FC = () => {
   const [navBackgroundColor, setNavBackgroundColor] = useState(
-    "rgba(255, 255, 255, 0)",
+    "rgba(255, 255, 255, 0)"
   );
   const [boxShadow, setBoxShadow] = useState("none");
 

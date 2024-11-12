@@ -1,4 +1,9 @@
 {
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
   "compilerOptions": {
     "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -15,9 +20,20 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src", 
-  },
-  "files": ["custom.d.ts"],
-  "include": ["src", "custom.d.ts"],
-  "extends": "./tsconfig.paths.json"
+    "baseUrl": "./src",
+    "paths": {
+      "@pages/*": ["components/pages/*"],
+      "@molecules/*": ["components/molecules/*"],
+      "@components/*": ["components/*"],
+      "@atoms/*": ["components/atoms/*"],
+      "@organisms/*": ["components/organisms/*"],
+      "@ui/*": ["components/common/ui/*"],
+      "@hooks/*": ["hooks/*"],
+      "@api/*": ["api/*"],
+      "@utils/*": ["utils/*"],
+      "@context/*": ["context/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@assets/*": ["assets/*"]
+    }
+  }
 }

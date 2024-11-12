@@ -1,14 +1,4 @@
-import React from "react";
-import * as FaIcons from "react-icons/fa";
-import * as GiIcons from "react-icons/gi";
-import * as SiIcons from "react-icons/si";
-import * as DiIcons from "react-icons/di";
-import * as Fa6Icons from "react-icons/fa6";
-import * as TbIcons from "react-icons/tb";
-import * as AiIcons from "react-icons/ai";
-import * as GrIcons from "react-icons/gr";
-import * as BiIcons from "react-icons/bi";
-import * as RiIcons from "react-icons/ri";
+import React, { Suspense, lazy } from "react";
 
 export enum IconLibraryList {
   FontAwesome = "fa",
@@ -25,13 +15,83 @@ export enum IconLibraryList {
 
 interface IconProps {
   iconName: string;
-  library?: string;
+  library?: IconLibraryList;
   size?: string | number;
   gradientColors?: [string, string];
   color?: string;
   className?: string;
   style?: React.CSSProperties;
 }
+
+const loadIcon = (
+  library: IconLibraryList,
+  iconName: string,
+): React.LazyExoticComponent<React.ComponentType<any>> | null => {
+  switch (library) {
+    case IconLibraryList.FontAwesome:
+      return lazy(() =>
+        import("react-icons/fa").then((module) => ({
+          default: (module as any)[`Fa${capitalize(iconName)}`],
+        })),
+      );
+    case IconLibraryList.GiIcons:
+      return lazy(() =>
+        import("react-icons/gi").then((module) => ({
+          default: (module as any)[`Gi${capitalize(iconName)}`],
+        })),
+      );
+    case IconLibraryList.SiIcons:
+      return lazy(() =>
+        import("react-icons/si").then((module) => ({
+          default: (module as any)[`Si${capitalize(iconName)}`],
+        })),
+      );
+    case IconLibraryList.DiIcons:
+      return lazy(() =>
+        import("react-icons/di").then((module) => ({
+          default: (module as Record<string, any>)[`Di${capitalize(iconName)}`],
+        })),
+      );
+    case IconLibraryList.Fa6Icons:
+      return lazy(() =>
+        import("react-icons/fa6").then((module) => ({
+          default: (module as Record<string, any>)[`Fa${capitalize(iconName)}`],
+        })),
+      );
+    case IconLibraryList.TbIcons:
+      return lazy(() =>
+        import("react-icons/tb").then((module) => ({
+          default: (module as Record<string, any>)[`Tb${capitalize(iconName)}`],
+        })),
+      );
+    case IconLibraryList.AiIcons:
+      return lazy(() =>
+        import("react-icons/ai").then((module) => ({
+          default: (module as Record<string, any>)[`Ai${capitalize(iconName)}`],
+        })),
+      );
+    case IconLibraryList.GrIcons:
+      return lazy(() =>
+        import("react-icons/gr").then((module) => ({
+          default: (module as Record<string, any>)[`Gr${capitalize(iconName)}`],
+        })),
+      );
+    case IconLibraryList.BiIcons:
+      return lazy(() =>
+        import("react-icons/bi").then((module) => ({
+          default: (module as Record<string, any>)[`Bi${capitalize(iconName)}`],
+        })),
+      );
+    case IconLibraryList.RiIcons:
+      return lazy(() =>
+        import("react-icons/ri").then((module) => ({
+          default: (module as Record<string, any>)[`Ri${capitalize(iconName)}`],
+        })),
+      );
+    default:
+      return null;
+  }
+};
 
 const GradientDefs: React.FC<{ colors?: [string, string] }> = ({ colors }) => {
   if (!colors) return null;
@@ -55,64 +115,7 @@ const Icon: React.FC<IconProps> = ({
   className,
   style,
 }) => {
-  let IconComponent: React.ComponentType<{
-    className?: string;
-    style?: React.CSSProperties;
-  }> | null = null;
-
-  switch (library) {
-    case "fa":
-      IconComponent =
-        FaIcons[`Fa${capitalize(iconName)}` as keyof typeof FaIcons] || null;
-      break;
-    case "gi":
-      IconComponent =
-        GiIcons[`Gi${capitalize(iconName)}` as keyof typeof GiIcons] ||
-        GiIcons.GiHelp;
-      break;
-    case "si":
-      IconComponent =
-        SiIcons[`Si${capitalize(iconName)}` as keyof typeof SiIcons] ||
-        GiIcons.GiHelp;
-      break;
-    case "di":
-      IconComponent =
-        DiIcons[`Di${capitalize(iconName)}` as keyof typeof DiIcons] ||
-        GiIcons.GiHelp;
-      break;
-    case "fa6":
-      IconComponent =
-        Fa6Icons[`Fa${capitalize(iconName)}` as keyof typeof Fa6Icons] ||
-        GiIcons.GiHelp;
-      break;
-    case "tb":
-      IconComponent =
-        TbIcons[`Tb${capitalize(iconName)}` as keyof typeof TbIcons] ||
-        GiIcons.GiHelp;
-      break;
-    case "ai":
-      IconComponent =
-        AiIcons[`Ai${capitalize(iconName)}` as keyof typeof AiIcons] ||
-        GiIcons.GiHelp;
-      break;
-    case "gr":
-      IconComponent =
-        GrIcons[`Gr${capitalize(iconName)}` as keyof typeof GrIcons] ||
-        GiIcons.GiHelp;
-      break;
-    case "bi":
-      IconComponent =
-        BiIcons[`Bi${capitalize(iconName)}` as keyof typeof BiIcons] ||
-        GiIcons.GiHelp;
-      break;
-    case "ri":
-      IconComponent =
-        RiIcons[`Ri${capitalize(iconName)}` as keyof typeof RiIcons] ||
-        GiIcons.GiHelp;
-      break;
-    default:
-      IconComponent = null;
-  }
+  const IconComponent = loadIcon(library, iconName);
 
   if (!IconComponent) {
     return (
@@ -132,8 +135,8 @@ const Icon: React.FC<IconProps> = ({
   }
 
   return (
-    <>
-      <GradientDefs colors={gradientColors} />{" "}
+    <Suspense fallback={<div>Loading...</div>}>
+      <GradientDefs colors={gradientColors} />
       <div
         className={className}
         style={{
@@ -149,10 +152,12 @@ const Icon: React.FC<IconProps> = ({
           }}
         />
       </div>
-    </>
+    </Suspense>
   );
 };
 
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+const capitalize = (str: string): string => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
 
 export default Icon;

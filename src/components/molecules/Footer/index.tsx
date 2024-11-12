@@ -16,7 +16,7 @@ const Footer: React.FC<FooterProps> = ({ github, linkedin, email }) => {
     >
       <div className="container mx-auto text-center">
         <p className="text-lg">
-          &copy; {new Date().getFullYear()} My Portfolio. All rights reserved.
+          &copy; {new Date().getFullYear()} Vitor Stahelin. All rights reserved.
         </p>
         <div className="flex justify-center space-x-4 mt-4">
           {github && (

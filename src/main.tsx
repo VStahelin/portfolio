@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { GlobalValues } from "@context/GlobalValues";
-import { ScreenSizeProvider } from "@context/Mobile";
-import { DataProvider } from "@context/DataAPIContext";
+import { GlobalValues } from "./context/GlobalValues";
+import { ScreenSizeProvider } from "./context/Mobile";
+import { DataProvider } from "./context/DataAPIContext";
 
 const rootElement = document.getElementById("root");
 
@@ -19,6 +19,6 @@ if (rootElement !== null) {
           </DataProvider>
         </GlobalValues>
       </ScreenSizeProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
   );
 }
