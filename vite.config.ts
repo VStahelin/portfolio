@@ -1,12 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-// import path from "path";
 import tailwindcss from "tailwindcss";
 import { VitePWA } from "vite-plugin-pwa";
+import svgr from "vite-plugin-svgr";
 
 export default defineConfig({
   plugins: [
     react(),
+    svgr(),
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
@@ -31,7 +32,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 50 * 1024 * 1024, //  50 MB (adjust as needed)
+        maximumFileSizeToCacheInBytes: 50 * 1024 * 1024, // 50 MB (adjust as needed)
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\//,
@@ -76,17 +77,12 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            // Split React dependencies into a separate chunk
             if (id.includes("react") || id.includes("react-dom")) {
               return "react-vendors";
             }
-
-            // Split other common dependencies (e.g., Lodash)
             if (id.includes("lodash")) {
               return "lodash-vendors";
             }
-
-            // Split other vendor dependencies (e.g., Bootstrap)
             if (id.includes("bootstrap")) {
               return "bootstrap-vendors";
             }
