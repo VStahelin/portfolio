@@ -22,19 +22,19 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "./src",
-    "paths": {
-      "@pages/*": ["components/pages/*"],
-      "@molecules/*": ["components/molecules/*"],
-      "@components/*": ["components/*"],
-      "@atoms/*": ["components/atoms/*"],
-      "@organisms/*": ["components/organisms/*"],
-      "@ui/*": ["components/common/ui/*"],
-      "@hooks/*": ["hooks/*"],
-      "@api/*": ["api/*"],
-      "@utils/*": ["utils/*"],
-      "@context/*": ["context/*"],
-      "@interfaces/*": ["interfaces/*"],
-      "@assets/*": ["assets/*"]
-    }
+    // "paths": {
+    //   "@pages/*": ["components/pages/*"],
+    //   "@molecules/*": ["components/molecules/*"],
+    //   "@components/*": ["components/*"],
+    //   "@atoms/*": ["components/atoms/*"],
+    //   "@organisms/*": ["components/organisms/*"],
+    //   "@ui/*": ["components/common/ui/*"],
+    //   "@hooks/*": ["hooks/*"],
+    //   "@api/*": ["api/*"],
+    //   "@utils/*": ["utils/*"],
+    //   "@context/*": ["context/*"],
+    //   "@interfaces/*": ["interfaces/*"],
+    //   "@assets/*": ["assets/*"]
+    // }
   }
 }

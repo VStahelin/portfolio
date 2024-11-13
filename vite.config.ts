@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
+// import path from "path";
 import tailwindcss from "tailwindcss";
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -53,22 +53,22 @@ export default defineConfig({
       plugins: [tailwindcss()],
     },
   },
-  resolve: {
-    alias: {
-      "@pages": path.resolve(__dirname, "src/components/pages"),
-      "@molecules": path.resolve(__dirname, "src/components/molecules"),
-      "@components": path.resolve(__dirname, "src/components"),
-      "@atoms": path.resolve(__dirname, "src/components/atoms"),
-      "@organisms": path.resolve(__dirname, "src/components/organisms"),
-      "@ui": path.resolve(__dirname, "src/components/common/ui"),
-      "@hooks": path.resolve(__dirname, "src/hooks"),
-      "@api": path.resolve(__dirname, "src/api"),
-      "@utils": path.resolve(__dirname, "src/utils"),
-      "@context": path.resolve(__dirname, "src/context"),
-      "@interfaces": path.resolve(__dirname, "src/interfaces"),
-      "@assets": path.resolve(__dirname, "src/assets"),
-    },
-  },
+  // resolve: {
+  //   alias: {
+  //     "@pages": path.resolve(__dirname, "src/components/pages"),
+  //     "@molecules": path.resolve(__dirname, "src/components/molecules"),
+  //     "@components": path.resolve(__dirname, "src/components"),
+  //     "@atoms": path.resolve(__dirname, "src/components/atoms"),
+  //     "@organisms": path.resolve(__dirname, "src/components/organisms"),
+  //     "@ui": path.resolve(__dirname, "src/components/common/ui"),
+  //     "@hooks": path.resolve(__dirname, "src/hooks"),
+  //     "@api": path.resolve(__dirname, "src/api"),
+  //     "@utils": path.resolve(__dirname, "src/utils"),
+  //     "@context": path.resolve(__dirname, "src/context"),
+  //     "@interfaces": path.resolve(__dirname, "src/interfaces"),
+  //     "@assets": path.resolve(__dirname, "src/assets"),
+  //   },
+  // },
   build: {
     manifest: true,
     chunkSizeWarningLimit: 3000,
