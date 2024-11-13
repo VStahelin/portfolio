@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import background from "../../../assets/images/background.svg";
+import background from "../../../assets/images/background.png";
 import { AboutMe } from "../../../interfaces/interfaces";
 import { ScreenSizeContext } from "../../../context/Mobile";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
