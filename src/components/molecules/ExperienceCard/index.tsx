@@ -1,7 +1,7 @@
-import { ProfessionalExperience } from "@interfaces/interfaces";
+import { ProfessionalExperience } from "../../../interfaces/interfaces";
 import React, { useContext } from "react";
 import "./styles.css";
-import { ScreenSizeContext } from "@context/Mobile";
+import { ScreenSizeContext } from "../../../context/Mobile";
 
 interface ExperienceCardProps {
   experience: ProfessionalExperience;

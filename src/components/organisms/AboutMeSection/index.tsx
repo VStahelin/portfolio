@@ -1,7 +1,7 @@
-import { AboutMe } from "@interfaces/interfaces";
 import React from "react";
 import background from "@assets/images/waves.png";
-import StackCard from "@molecules/StackCard";
+import StackCard from "../../molecules/StackCard";
+import { AboutMe } from "../../../interfaces/interfaces";
 
 interface AboutMeSectionProps {
   about_data: AboutMe | null;

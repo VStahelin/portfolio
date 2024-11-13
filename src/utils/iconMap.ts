@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { IconLibraryList } from "@components/atoms/Icon";
+import { IconLibraryList } from "../components/atoms/Icon";
 
 enum ProgrammingIconMap {
   React = "React",

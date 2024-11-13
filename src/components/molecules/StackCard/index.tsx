@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import Icon from "@atoms/Icon";
-import { getIconMapping } from "@utils/iconMap";
-import ProgressBar from "@atoms/ProgressBar";
-import { ScreenSizeContext } from "@context/Mobile";
+import Icon from "../../atoms/Icon";
+import { getIconMapping } from "../../../utils/iconMap";
+import ProgressBar from "../../atoms/ProgressBar";
+import { ScreenSizeContext } from "../../../context/Mobile";
 
 interface StackCardProps {
   icon: string;

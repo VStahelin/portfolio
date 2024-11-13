@@ -1,5 +1,5 @@
-import { DataContext } from "@context/DataAPIContext";
-import { BaseUrlContext } from "@context/GlobalValues";
+import { DataContext } from "../../../context/DataAPIContext";
+import { BaseUrlContext } from "../../../context/GlobalValues";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, MouseEvent } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import ReactGA from "react-ga4";
 import {
   BrowserRouter as Router,
@@ -9,12 +9,12 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import { BaseUrlContext } from "@context/GlobalValues";
-import { DataContext } from "@context/DataAPIContext";
-import HomePage from "@pages/HomePage";
-import AboutPage from "@pages/AboutPage";
-import Footer from "@molecules/Footer";
-import Loading from "@molecules/Loading";
+import HomePage from "./components/pages/HomePage";
+import AboutPage from "./components/pages/AboutPage";
+import Footer from "./components/molecules/Footer";
+import Loading from "./components/molecules/Loading";
+import { DataContext } from "./context/DataAPIContext";
+import { BaseUrlContext } from "./context/GlobalValues";
 
 type ContactType = {
   email: string;
@@ -60,7 +60,7 @@ const App: React.FC = () => {
   }, [context?.loading, context?.error, context?.portfolio]);
 
   useEffect(() => {
-    const handleDocumentClick = (event: MouseEvent) => {
+    const handleDocumentClick = (event: Event) => {
       const target = event.target as HTMLElement;
       const elementType = target.tagName.toLowerCase();
       const elementId = target.id || "id-null";

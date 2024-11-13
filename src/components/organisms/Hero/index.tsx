@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import background from "@assets/images/background.svg";
-import { AboutMe } from "@interfaces/interfaces";
-import { ScreenSizeContext } from "@context/Mobile";
+import { AboutMe } from "../../../interfaces/interfaces";
+import { ScreenSizeContext } from "../../../context/Mobile";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 
 import { ChevronDownIcon } from "@heroicons/react/20/solid";

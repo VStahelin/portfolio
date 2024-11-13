@@ -1,5 +1,5 @@
-import { ProfessionalExperience } from "@interfaces/interfaces";
-import ExperienceCard from "@molecules/ExperienceCard";
+import { ProfessionalExperience } from "../../../interfaces/interfaces";
+import ExperienceCard from "../../molecules/ExperienceCard";
 import background from "@assets/images/waves_long.png";
 import React from "react";
 

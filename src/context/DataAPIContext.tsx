@@ -1,4 +1,4 @@
-import { DataContextType, Portfolio } from "@interfaces/interfaces";
+import { DataContextType, Portfolio } from "../interfaces/interfaces";
 import React, { createContext, useEffect, useState, ReactNode } from "react";
 
 const DataContext = createContext<DataContextType | undefined>(undefined);

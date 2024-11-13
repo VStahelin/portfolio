@@ -1,10 +1,10 @@
-import AboutMeSection from "@organisms/AboutMeSection";
-import Hero from "@organisms/Hero";
-import NavBar from "@molecules/Navbar";
+import AboutMeSection from "../../organisms/AboutMeSection";
+import Hero from "../../organisms/Hero";
+import NavBar from "../../molecules/Navbar";
 import React, { useMemo } from "react";
-import Projects from "@organisms/Projects";
-import { Portfolio } from "@interfaces/interfaces";
-import ExperienceList from "@organisms/ExperienceList";
+import Projects from "../../organisms/Projects";
+import { Portfolio } from "../../../interfaces/interfaces";
+import ExperienceList from "../../organisms/ExperienceList";
 
 interface HomePageProps {
   portfolio: Portfolio | null;
