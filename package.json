@@ -4,19 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://vstahelin.github.io/",
-  "scripts": {
-    "dev": "vite",
-    "start": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
-    "preview": "vite preview",
-    "clean": "rm -rf node_modules/.cache && npm start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "test": "vite test --passWithNoTests",
-    "prepare": "husky",
-    "lintfix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\""
+"scripts": {
+  "dev": "vite",
+  "start": "vite",
+  "build": "tsc -b && vite build",
+  "serve": "serve -s dist",
+  "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+  "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
+  "preview": "vite preview",
+  "clean": "rm -rf node_modules/.cache && npm start",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist",
+  "test": "vite test --passWithNoTests",
+  "prepare": "husky",
+  "lintfix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
