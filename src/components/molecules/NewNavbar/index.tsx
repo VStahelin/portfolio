@@ -6,15 +6,14 @@ const NewNavbar = () => {
   const [navBackgroundColor, setNavBackgroundColor] = useState(
     "rgba(21, 23, 33, 1)"
   );
-  const [boxShadow, setBoxShadow] = useState("0 4px 10px rgba(0, 0, 0, 0.1)");
+  const [boxShadow] = useState("0 4px 10px rgba(0, 0, 0, 0.1)");
   const [backdropFilter, setBackdropFilter] = useState("blur(8px)");
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const interpolateColor = (scrollValue, maxScroll) => {
-    // A opacidade diminui conforme rola para baixo, mas não ultrapassa 0.6 (40% transparente)
+  const interpolateColor = (scrollValue: number, maxScroll: number) => {
     const opacity = Math.max(1 - scrollValue / maxScroll, 0.6);
     return `rgba(21, 23, 33, ${opacity})`;
   };
@@ -27,7 +26,6 @@ const NewNavbar = () => {
       const newBackgroundColor = interpolateColor(scrollY, maxScroll);
       setNavBackgroundColor(newBackgroundColor);
 
-      // Configura o desfoque dependendo do scroll
       if (scrollY > maxScroll) {
         setBackdropFilter("blur(4px)");
       } else {
@@ -54,11 +52,10 @@ const NewNavbar = () => {
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={Logo} alt="Logo" className="w-10 h-10 rounded-full" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white-dark">
-            Vitor Stahelin
+            Vitor Stähelin
           </span>
         </a>
 
-        {/* Botão do menu móvel */}
         <button
           onClick={toggleMobileMenu}
           className="lg:hidden inline-flex items-center p-2 text-white hover:bg-back-light dark:hover:bg-tertiary"
@@ -109,7 +106,7 @@ const NewNavbar = () => {
               Home
             </a>
             <a
-              href="#projects"
+              href="/projects"
               className="text-sm text-white hover:text-primary"
             >
               Projects

@@ -15,7 +15,7 @@ import Footer from "./components/molecules/Footer";
 import Loading from "./components/molecules/Loading";
 import { DataContext } from "./context/DataAPIContext";
 import { BaseUrlContext } from "./context/GlobalValues";
-import ProjectPage from "./components/pages/Projects";
+import ProjectPage from "./components/pages/ProjectsPage";
 import NewNavbar from "./components/molecules/NewNavbar";
 
 type ContactType = {
