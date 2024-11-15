@@ -13,6 +13,6 @@ jobs:
         uses: github/super-linter@v5
         env:
           RUN_LOCAL: true
+          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
         with:
           args: --enabled linters=eslint --install-deps=false
-          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
