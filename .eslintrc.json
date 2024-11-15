@@ -1,37 +1,45 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
+  "ignorePatterns": ["node_modules/**", "dist/**"],
   "extends": [
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:tailwindcss/recommended",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 2020,
     "sourceType": "module",
-    "project": "./tsconfig.json",
-    "tsconfigRootDir": "./"
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
-  "plugins": ["react", "prettier", "@typescript-eslint"],
-  "rules": {
-    "prettier/prettier": [ "error", { "endOfLine": "auto" } ],
-    "@typescript-eslint/no-unused-vars": ["warn"]
-  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "tailwindcss",
+    "prettier"
+  ],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "overrides": [
-    {
-      "files": ["*.d.ts"],
-      "rules": {
-        "no-unused-vars": "off"
+  "globals": {
+    "myCustomGlobal": "readonly"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
       }
-    }
-  ]
+    ],
+    "tailwindcss/no-custom-classname": "off"
+  }
 }
