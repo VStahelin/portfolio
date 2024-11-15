@@ -15,4 +15,4 @@ jobs:
           RUN_LOCAL: true
         with:
           args: --enabled linters=eslint --install-deps=false
-          ESLINT_CONFIG_FILE: .eslintrc.json  
+          ESLINT_CONFIG_FILE: eslint.config.js
