@@ -1,13 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import Logo from "../../../assets/images/logo.png";
 
-const NavBar: React.FC = () => {
+const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [navBackgroundColor, setNavBackgroundColor] = useState(
-    "rgba(255, 255, 255, 0)"
+    "rgba(21, 23, 33, 1)"
   );
-  const [boxShadow, setBoxShadow] = useState("none");
+  const [boxShadow] = useState("0 4px 10px rgba(0, 0, 0, 0.1)");
+  const [backdropFilter, setBackdropFilter] = useState("blur(8px)");
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const interpolateColor = (scrollValue: number, maxScroll: number) => {
-    const opacity = Math.min(scrollValue / maxScroll, 1);
+    const opacity = Math.max(1 - scrollValue / maxScroll, 0.6);
     return `rgba(21, 23, 33, ${opacity})`;
   };
 
@@ -20,60 +27,101 @@ const NavBar: React.FC = () => {
       setNavBackgroundColor(newBackgroundColor);
 
       if (scrollY > maxScroll) {
-        setBoxShadow("0 4px 10px rgba(0, 0, 0, 0.1)");
+        setBackdropFilter("blur(4px)");
       } else {
-        setBoxShadow("none");
+        setBackdropFilter("blur(8px)");
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <div className={`container mx-auto flex justify-center items-center`}>
-      <nav
-        className={`fixed top-0 left-0 w-full z-10 py-4`}
-        style={{
-          backgroundColor: navBackgroundColor,
-          transition: "background-color 0.3s ease, box-shadow 0.3s ease",
-          boxShadow: boxShadow,
-        }}
-      >
-        <div className="space-x-4">
-          <button
-            className="text-white-light hover:text-tertiary-light transition-colors font-bold"
-            onClick={() => scrollToSection("about-me")}
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        backgroundColor: navBackgroundColor,
+        boxShadow: boxShadow,
+        backdropFilter: backdropFilter,
+      }}
+    >
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src={Logo} alt="Logo" className="w-10 h-10 rounded-full" />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white-dark">
+            Vitor Stähelin
+          </span>
+        </a>
+
+        <button
+          onClick={toggleMobileMenu}
+          className="lg:hidden inline-flex items-center p-2 text-white hover:bg-back-light dark:hover:bg-tertiary"
+        >
+          <span className="sr-only">Open main menu</span>
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            About Me
-          </button>
-          <button
-            className="text-white-light hover:text-tertiary-light
-             transition-colors font-bold"
-            onClick={() => scrollToSection("projects")}
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+
+        {/* Menu Desktop */}
+        <div className="hidden lg:flex items-center space-x-4 relative">
+          <a
+            href="/"
+            className="text-sm text-white hover:text-primary font-bold"
           >
-            Portfolio
-          </button>
-          <button
-            className="text-white-light hover:text-tertiary-light transition-colors font-bold"
-            onClick={() => scrollToSection("experiences")}
+            Home
+          </a>
+          <a
+            href="projects"
+            className="text-sm text-white hover:text-primary font-bold"
           >
-            Experiences
-          </button>
+            Projects List
+          </a>
+          <a
+            href="#contact"
+            className="text-sm text-white hover:text-primary font-bold"
+          >
+            Get in Touch
+          </a>
         </div>
-      </nav>
-    </div>
+
+        {/* Menu Mobile */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden w-full flex flex-col items-center mt-4 space-y-2">
+            <a href="/" className="text-sm text-white hover:text-primary">
+              Home
+            </a>
+            <a
+              href="/projects"
+              className="text-sm text-white hover:text-primary"
+            >
+              Projects
+            </a>
+            <a
+              href="#contact"
+              className="text-sm text-white hover:text-primary"
+            >
+              Get in Touch
+            </a>
+          </div>
+        )}
+      </div>
+    </nav>
   );
 };
 
-export default NavBar;
+export default Navbar;
