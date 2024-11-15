@@ -1,8 +1,11 @@
 name: Deploy React to GitHub Pages
 
 on:
+  push:
+    branches:
+      - main
   workflow_run:
-    workflows: ["Continuous Integration (CI)"]
+    workflows: ["Lint Validation"]
     types: [completed]
 
 jobs:
