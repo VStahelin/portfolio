@@ -91,12 +91,12 @@ const Navbar = () => {
           >
             Projects List
           </a>
-          <a
+          {/* <a
             href="#contact"
             className="text-sm text-white hover:text-primary font-bold"
           >
             Get in Touch
-          </a>
+          </a> */}
         </div>
 
         {/* Menu Mobile */}
@@ -111,12 +111,12 @@ const Navbar = () => {
             >
               Projects
             </a>
-            <a
+            {/* <a
               href="#contact"
               className="text-sm text-white hover:text-primary"
             >
               Get in Touch
-            </a>
+            </a> */}
           </div>
         )}
       </div>

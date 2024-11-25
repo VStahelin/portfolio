@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import WavesLong from "../../../assets/images/waves_long.png";
-import RobotBackground from "../../../assets/images/robot_on_library.jpeg";
 import ProjectCard from "../../molecules/ProjectCard";
 import "./index.css";
 
@@ -15,15 +14,23 @@ type Project = {
   more_info_link: string;
 };
 
-interface ProjectPageProps {
-  data: Project[];
-}
-
-const ProjectPage: React.FC<ProjectPageProps> = ({ data }) => {
+const ProjectPage: React.FC = () => {
   const [searchText, setSearchText] = useState<string>("");
   const [selectedTag, setSelectedTag] = useState<string>("All");
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [modalData, setModalData] = useState<Project | null>(null);
+  const [data, setData] = useState<Project[]>([]);
+
+  const fetchedData = () => {
+    fetch("https://vstahelin.github.io/cms-portfolio/data/project.json")
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    fetchedData();
+  }, []);
 
   const uniqueTags = Array.from(
     new Set(data.flatMap((project) => project.tags))
@@ -60,28 +67,9 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ data }) => {
 
       <div className="min-h-screen bg-tertiary bg-opacity-40 text-white flex justify-center mt-16">
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-secondary-dark to-tertiary-dark p-12 lg:p-24 shadow-lg my-8 text-center text-white">
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-25 rounded-3xl"
-              style={{
-                backgroundImage: `url(${RobotBackground})`,
-              }}
-            />
-            <div className="relative z-10">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">
-                Discover My Quick Projects
-              </h1>
-              <p className="mt-6 text-lg md:text-xl lg:text-2xl text-gray-100 max-w-2xl mx-auto">
-                A space to showcase projects made in my free time, exploring new
-                ideas and technologies.
-              </p>
-            </div>
-          </section> */}
-
           <div
             className="bg-back-light rounded-xl shadow-md p-8 my-8"
             style={{
-              // black-light with 10% opacity
               backgroundColor: "rgba(0, 0, 0, 0.25)",
               backdropFilter: "blur(8px)",
             }}
@@ -103,7 +91,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ data }) => {
                 <button
                   onClick={() => setShowDropdown(!showDropdown)}
                   type="button"
-                  className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium  rounded-l-lg hover:bg-tertiary-light transition focus:outline-none dark:bg-back-dark dark:text-white "
+                  className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium rounded-l-lg hover:bg-tertiary-light transition focus:outline-none dark:bg-back-dark dark:text-white "
                 >
                   {selectedTag === "All" ? "All categories" : selectedTag}
                 </button>
@@ -115,7 +103,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ data }) => {
                       onClick={() => setShowDropdown(false)}
                     />
                     <div className="absolute bg-white-light divide-y divide-back-light rounded-lg shadow w-44 dark:bg-back-dark z-10 shadow-secondary">
-                      <ul className="py-2 text-sm text-tertiary-dark dark:text-white-light">
+                      <ul className="py-2 text-sm text-tertiary-dark dark:text-white-light max-h-96 overflow-y-auto">
                         <li>
                           <button
                             type="button"
@@ -125,7 +113,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ data }) => {
                             All
                           </button>
                         </li>
-                        {uniqueTags.map((tag) => (
+                        {uniqueTags.sort().map((tag) => (
                           <li key={tag}>
                             <button
                               type="button"
@@ -154,44 +142,53 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ data }) => {
                 />
               </div>
             </form>
+            <div>
+              <section
+                id="highlighted-projects"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-8"
+              >
+                <TransitionGroup component={null}>
+                  {filteredProjects
+                    .filter((project) => project.is_highlighted)
+                    .map((project, index) => (
+                      <CSSTransition
+                        key={index}
+                        timeout={200}
+                        classNames="fade"
+                      >
+                        <ProjectCard
+                          project={project}
+                          onClick={() => setModalData(project)}
+                          isHighlighted
+                        />
+                      </CSSTransition>
+                    ))}
+                </TransitionGroup>
+              </section>
 
-            <section
-              id="highlighted-projects"
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-8"
-            >
-              <TransitionGroup component={null}>
-                {filteredProjects
-                  .filter((project) => project.is_highlighted)
-                  .map((project, index) => (
-                    <CSSTransition key={index} timeout={200} classNames="fade">
-                      <ProjectCard
-                        project={project}
-                        onClick={() => setModalData(project)}
-                        isHighlighted
-                      />
-                    </CSSTransition>
-                  ))}
-              </TransitionGroup>
-            </section>
-
-            <section
-              id="all-projects"
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-            >
-              <TransitionGroup component={null}>
-                {filteredProjects
-                  .filter((project) => !project.is_highlighted)
-                  .map((project, index) => (
-                    <CSSTransition key={index} timeout={500} classNames="fade">
-                      <ProjectCard
-                        project={project}
-                        onClick={() => setModalData(project)}
-                        isHighlighted={false}
-                      />
-                    </CSSTransition>
-                  ))}
-              </TransitionGroup>
-            </section>
+              <section
+                id="all-projects"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+              >
+                <TransitionGroup component={null}>
+                  {filteredProjects
+                    .filter((project) => !project.is_highlighted)
+                    .map((project, index) => (
+                      <CSSTransition
+                        key={index}
+                        timeout={500}
+                        classNames="fade"
+                      >
+                        <ProjectCard
+                          project={project}
+                          onClick={() => setModalData(project)}
+                          isHighlighted={false}
+                        />
+                      </CSSTransition>
+                    ))}
+                </TransitionGroup>
+              </section>
+            </div>
           </div>
         </div>
 
