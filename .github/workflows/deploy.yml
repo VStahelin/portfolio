@@ -20,15 +20,11 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Cache Node modules
-        uses: actions/cache@v4
+      - name: Download Node modules cache
+        uses: actions/download-artifact@v3
         with:
+          name: node-modules-cache
           path: ~/.npm
-          key: ${{ runner.os }}-build-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-cache-node-modules-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
 
       - name: Install Dependencies
         run: npm ci --legacy-peer-deps
