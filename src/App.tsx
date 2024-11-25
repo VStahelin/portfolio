@@ -15,6 +15,8 @@ import Footer from "./components/molecules/Footer";
 import Loading from "./components/molecules/Loading";
 import { DataContext } from "./context/DataAPIContext";
 import { BaseUrlContext } from "./context/GlobalValues";
+import ProjectPage from "./components/pages/ProjectsPage";
+import Navbar from "./components/molecules/Navbar";
 
 type ContactType = {
   email: string;
@@ -97,6 +99,7 @@ const App: React.FC = () => {
     <Router>
       <PageTracking />
       <div className="App">
+        <Navbar />
         <Routes>
           <Route
             path={`${BaseUrl}/`}
@@ -109,6 +112,7 @@ const App: React.FC = () => {
             }
           />
           <Route path={`${BaseUrl}/about`} element={<AboutPage />} />
+          <Route path={`${BaseUrl}/projects`} element={<ProjectPage />} />
           <Route path="*" element={<Navigate to={`${BaseUrl}/`} replace />} />
         </Routes>
         <Footer github={github} linkedin={linkedin} email={email} />

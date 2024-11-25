@@ -1,11 +1,23 @@
 import React from "react";
 import "./style.css";
 
-const Loading: React.FC = () => {
+interface LoadingProps {
+  containerClassName?: string;
+  loaderClassName?: string;
+  textClassName?: string;
+  hideText?: boolean;
+}
+
+const Loading: React.FC<LoadingProps> = ({
+  containerClassName = "loading-container",
+  loaderClassName = "loader",
+  textClassName = "",
+  hideText = false,
+}) => {
   return (
-    <div className="loading-container">
-      <div className="loader"></div>
-      <p>Loading...</p>
+    <div className={containerClassName}>
+      <div className={loaderClassName}></div>
+      {!hideText && <p className={textClassName}>Loading...</p>}
     </div>
   );
 };

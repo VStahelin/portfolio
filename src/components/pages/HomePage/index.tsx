@@ -1,6 +1,5 @@
 import AboutMeSection from "../../organisms/AboutMeSection";
 import Hero from "../../organisms/Hero";
-import NavBar from "../../molecules/Navbar";
 import React, { useMemo } from "react";
 import Projects from "../../organisms/Projects";
 import { Portfolio } from "../../../interfaces/interfaces";
@@ -50,9 +49,7 @@ const HomePage: React.FC<HomePageProps> = ({ portfolio }) => {
         expected."
         duration={5000}
       /> */}
-      <div id="navbar">
-        <NavBar />
-      </div>
+
       <div id="hero">
         <Hero about_data={portfolio?.about_me || null} />
       </div>
