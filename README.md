@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# Portfolio of Vitor Stähelin
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the source code for my personal portfolio, built with React, TypeScript, and Vite. The goal is to showcase my skills and projects in an organized and visually appealing way.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+The portfolio is a responsive website designed to be accessible on various devices. It uses a separate content management system (CMS), hosted on GitHub Pages ([https://vstahelin.github.io/cms-portfolio/](https://vstahelin.github.io/cms-portfolio/)), to separate the data from the interface code. This approach simplifies and streamlines content updates without requiring changes to the front-end code.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React**: JavaScript framework for building user interfaces.
+- **TypeScript**: A superset of JavaScript that adds static typing, improving code maintainability and reliability.
+- **Vite**: A web development tool that offers a fast development server and optimized build process.
+- **Tailwind CSS**: Utility-first CSS framework that simplifies the styling process.
+- **React Router**: Library for managing application routes.
+- **React GA4**: To integrate Google Analytics 4 into the site.
+- **React Icons**: For adding icons to the site.
+- **GitHub Actions**: To automate tasks like `lint` and `deploy`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How the CMS Works
 
-### `npm test`
+The CMS (Content Management System) is a separate repository hosted on GitHub Pages ([https://vstahelin.github.io/cms-portfolio/](https://vstahelin.github.io/cms-portfolio/)). It contains JSON files with portfolio data (about me, projects, experiences, etc.) and images. The React application in this repository fetches this data from the CMS and renders the website. Check the CMS repository README for more details about its structure and functionality.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How to Run the Project
 
-### `npm run build`
+1. **Clone the repository:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/VStahelin/portfolio.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install the dependencies:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+``` 
+or
+```bash
+yarn install
+```
 
-### `npm run eject`
+3. **Start the development server:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm run dev
+``` 
+or
+```bash
+yarn dev
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Visit `http://localhost:3000` in your browser to view the portfolio.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Deployment
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The deployment to GitHub Pages is automated using GitHub Actions. After a push to the `main` branch, the deployment workflow runs, building the application and publishing the files to the `gh-pages` branch.
