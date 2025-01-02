@@ -32,8 +32,13 @@ const ProjectPage: React.FC = () => {
     fetchedData();
   }, []);
 
+  const priorityTags = ["Python", "Django", "React", "Typescript", "Docker"];
+
   const uniqueTags = Array.from(
-    new Set(data.flatMap((project) => project.tags))
+    new Set([
+      ...priorityTags,
+      ...data.flatMap((project) => project.tags).sort(),
+    ])
   );
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,7 +118,7 @@ const ProjectPage: React.FC = () => {
                             All
                           </button>
                         </li>
-                        {uniqueTags.sort().map((tag) => (
+                        {uniqueTags.map((tag) => (
                           <li key={tag}>
                             <button
                               type="button"
