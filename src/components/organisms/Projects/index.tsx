@@ -1,23 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ProjectSectionProps } from "../../../interfaces/interfaces";
 import background from "../../../assets/images/background2.png";
 
 interface ProjectsProps {
   projects: ProjectSectionProps[];
-  tags: string[];
 }
 
-const Projects: React.FC<ProjectsProps> = ({ projects, tags }) => {
-  const [selectedTag, setSelectedTag] = useState<string>("All");
-  const disableTags = true;
-
+const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   const sortedProjects = [...projects].sort((a, b) => a.order_id - b.order_id);
-
-  const filteredProjects =
-    selectedTag === "All"
-      ? sortedProjects
-      : sortedProjects.filter((project) => project.tags.includes(selectedTag));
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-tertiary via-quaternary/90 to-tertiary overflow-hidden py-16 px-4">
@@ -56,12 +47,12 @@ const Projects: React.FC<ProjectsProps> = ({ projects, tags }) => {
 
         {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.length === 0 && (
+          {sortedProjects.length === 0 && (
             <p className="text-gray-400 col-span-full text-center">
               No projects available.
             </p>
           )}
-          {filteredProjects.map((project, index) => (
+          {sortedProjects.map((project, index) => (
             <div
               key={project.id}
               className="glass rounded-2xl overflow-hidden group md:hover:-translate-y-2 transition-transform duration-300 shadow-2xl animate-fade-in-up"

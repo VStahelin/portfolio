@@ -10,26 +10,12 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ portfolio }) => {
-  const { tags, projects } = useMemo(() => {
+  const projects = useMemo(() => {
     if (!portfolio) {
-      return { tags: [], projects: [] };
+      return [];
     }
 
-    const tagCount: { [key: string]: number } = {};
-
-    portfolio.projects.forEach((project) => {
-      project.tags?.forEach((tag) => {
-        if (tag) {
-          tagCount[tag] = (tagCount[tag] || 0) + 1;
-        }
-      });
-    });
-
-    const sortedTags = Object.entries(tagCount)
-      .sort(([, countA], [, countB]) => countB - countA)
-      .map(([tag]) => tag);
-
-    const projects = portfolio.projects.map((project) => ({
+    return portfolio.projects.map((project) => ({
       id: project.order_id,
       title: project.name,
       description: project.description,
@@ -38,8 +24,6 @@ const HomePage: React.FC<HomePageProps> = ({ portfolio }) => {
       project_url: project.project_url || "",
       order_id: project.order_id,
     }));
-
-    return { tags: sortedTags, projects };
   }, [portfolio]);
 
   return (
@@ -57,7 +41,7 @@ const HomePage: React.FC<HomePageProps> = ({ portfolio }) => {
         <AboutMeSection about_data={portfolio?.about_me || null} />
       </div>
       <div id="projects">
-        <Projects projects={projects} tags={tags} />
+        <Projects projects={projects} />
       </div>
       <div id="experiences">
         <ExperienceList
