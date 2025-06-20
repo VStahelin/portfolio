@@ -1,148 +1,92 @@
-import React, { useContext } from "react";
-import background from "../../../assets/images/background.png";
-import { AboutMe } from "../../../interfaces/interfaces";
-import { ScreenSizeContext } from "../../../context/Mobile";
+import React from "react";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { AboutMe } from "../../../interfaces/interfaces";
+import background from "../../../assets/images/background.png";
 
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
-
-interface AboutMeSectionProps {
+interface HeroProps {
   about_data: AboutMe | null;
 }
 
-const Hero: React.FC<AboutMeSectionProps> = ({ about_data }) => {
-  const screen = useContext(ScreenSizeContext);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const mobileAboutMe = (
-    <div className="flex h-screen justify-center items-center">
-      <div className="container">
-        <div className="flex flex-col justify-center items-center">
-          <div className="w-48 mb-5">
-            <img
-              src={about_data?.profile_photo_url}
-              alt="background"
-              className="h-auto rounded-lg shadow-lg"
-            />
-          </div>
-          <div className="flex-col justify-left items-start">
-            <h3 className="text-3xl text-left mb-1">
-              <span className="text-primary-light">Hi! </span>
-              <span className="text-white-dark">I&apos;m </span>
-            </h3>
-            <h1 className="text-5xl font-bold text-left mb-3">
-              <span className="text-white">{about_data?.name}</span>
-            </h1>
-            <h1 className="text-3xl text-left mb-4">
-              <span className="text-white">{about_data?.title}</span>
-            </h1>
-            <p className="text-left text-white mb-4">
-              {about_data?.short_summary}
-            </p>
-            <div className="flex space-x-4 mt-4">
-              <Link
-                to={about_data?.contact.linkedin || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin className="h-8 w-8 text-white" />
-              </Link>
-              <Link
-                to={about_data?.contact.github || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub className="h-8 w-8 text-white" />
-              </Link>
-              <Link
-                to={`mailto:${about_data?.contact.email}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaEnvelope className="h-8 w-8 text-white" />
-              </Link>
-            </div>
-          </div>
-          <div className="flex justify-center items-center mt-5">
-            <ChevronDownIcon
-              className="h-10 w-10 text-white animate-bounce"
-              onClick={() => {
-                scrollToSection("about-me");
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const desktopAboutMe = (
-    <div className="flex flex-col md:flex-row justify-between items-center">
-      <div className="flex-col basis-2/3 justify-left items-start">
-        <h1
-          className="text-8xl font-bold text-left mb-4"
-          style={{ fontFamily: "Roboto, sans-serif" }}
-        >
-          <span className="text-primary">I&apos;m </span>
-          <span className="text-white">{about_data?.name}</span>
-        </h1>
-        <h1 className="text-5xl text-left mb-4">
-          <span className="text-white">{about_data?.title}</span>
-        </h1>
-        <p className="text-left text-white mb-4">{about_data?.short_summary}</p>
-
-        <div className="flex space-x-4 mt-4">
-          <Link
-            to={about_data?.contact.linkedin || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedin className="h-8 w-8 text-white" />
-          </Link>
-          <Link
-            to={about_data?.contact.github || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithub className="h-8 w-8 text-white" />
-          </Link>
-          <Link
-            to={`mailto:${about_data?.contact.email}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaEnvelope className="h-8 w-8 text-white" />
-          </Link>
-        </div>
-      </div>
-      <div className="flex basis-1/3 justify-center items-center">
-        <img
-          src={about_data?.profile_photo_url}
-          alt="background"
-          className="h-auto rounded-lg shadow-lg"
-        />
-      </div>
-    </div>
-  );
-
+const Hero: React.FC<HeroProps> = ({ about_data }) => {
   return (
     <div
-      className="flex h-screen justify-center items-center"
+      className="relative min-h-screen flex items-center justify-center overflow"
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundAttachment: "fixed",
       }}
     >
-      <div className="container mx-8">
-        {screen.isMobile ? mobileAboutMe : desktopAboutMe}
+      <div className="absolute inset-0 bg-tertiary/60" />
+
+      <div className="relative z-10 container mx-auto px-4 text-white pt-24 md:pt-0">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Image Column (Mobile) */}
+          <div className="md:hidden flex justify-center animate-fade-in-up -mb-10">
+            <div className="relative w-48">
+              <div className="absolute inset-0 card-gradient-background blur-xl" />
+              <img
+                src={about_data?.profile_photo_url}
+                alt="Profile"
+                className="relative w-full h-full object-cover shadow-2xl rounded-2xl"
+              />
+            </div>
+          </div>
+
+          {/* Text Column */}
+          <div className="text-center md:text-left animate-fade-in-up p-7">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <span className="block mb-2">Hi, I'm</span>
+              <span className="gradient-text">{about_data?.name}</span>
+            </h1>
+            <h2 className="text-2xl md:text-3xl font-medium text-blue-200 mt-4">
+              {about_data?.title}
+            </h2>
+            <p className="mt-6 text-lg text-gray-300 max-w-lg mx-auto md:mx-0">
+              {about_data?.short_summary}
+            </p>
+            <div className="mt-8 flex justify-center md:justify-start space-x-6">
+              <a
+                href={about_data?.contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-primary transition-colors"
+                aria-label="LinkedIn Profile"
+              >
+                <FaLinkedin size={32} />
+              </a>
+              <a
+                href={about_data?.contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-primary transition-colors"
+                aria-label="GitHub Profile"
+              >
+                <FaGithub size={32} />
+              </a>
+              <a
+                href={`mailto:${about_data?.contact.email}`}
+                className="text-gray-300 hover:text-primary transition-colors"
+                aria-label="Email"
+              >
+                <FaEnvelope size={32} />
+              </a>
+            </div>
+          </div>
+
+          {/* Image Column (Desktop) */}
+          <div className="hidden md:flex justify-center animate-fade-in-up animation-delay-300">
+            <div className="relative w-96">
+              <div className="absolute inset-0 card-gradient-background blur-2xl opacity-50" />
+              <img
+                src={about_data?.profile_photo_url}
+                alt="Profile"
+                className="relative w-full h-full object-cover shadow-2xl rounded-2xl"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

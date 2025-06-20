@@ -16,7 +16,10 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-tertiary via-tertiary/95 to-quaternary/90 overflow-hidden py-16 px-4">
+    <div
+      id="about-me-section"
+      className="relative min-h-screen bg-gradient-to-br from-tertiary via-tertiary/95 to-quaternary/90 overflow-hidden py-16 px-4"
+    >
       {/* Background with animated waves */}
       <div
         className="absolute inset-0 opacity-80 animate-wave"

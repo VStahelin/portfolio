@@ -1,37 +1,46 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../../assets/images/logo.png";
+
+const NavLink = ({
+  to,
+  children,
+  onClick,
+}: {
+  to: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+}) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className={`relative text-lg font-medium text-white transition-colors hover:text-primary ${
+        isActive ? "text-primary" : ""
+      }`}
+    >
+      {children}
+      {isActive && (
+        <span className="absolute left-0 -bottom-2 w-full h-0.5 bg-primary rounded-full motion-safe:animate-fade-in-up" />
+      )}
+    </Link>
+  );
+};
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [navBackgroundColor, setNavBackgroundColor] = useState(
-    "rgba(21, 23, 33, 1)"
-  );
-  const [boxShadow] = useState("0 4px 10px rgba(0, 0, 0, 0.1)");
-  const [backdropFilter, setBackdropFilter] = useState("blur(8px)");
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const interpolateColor = (scrollValue: number, maxScroll: number) => {
-    const opacity = Math.max(1 - scrollValue / maxScroll, 0.6);
-    return `rgba(21, 23, 33, ${opacity})`;
-  };
-
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const maxScroll = 150;
-
-      const newBackgroundColor = interpolateColor(scrollY, maxScroll);
-      setNavBackgroundColor(newBackgroundColor);
-
-      if (scrollY > maxScroll) {
-        setBackdropFilter("blur(4px)");
-      } else {
-        setBackdropFilter("blur(8px)");
-      }
+      setHasScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,91 +49,96 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMobileMenuOpen]);
+
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        backgroundColor: navBackgroundColor,
-        boxShadow: boxShadow,
-        backdropFilter: backdropFilter,
-      }}
-    >
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link
-          to="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <img src={Logo} alt="Logo" className="w-10 h-10 rounded-full" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white-dark">
-            Vitor Stähelin
-          </span>
-        </Link>
-
-        <button
-          onClick={toggleMobileMenu}
-          className="lg:hidden inline-flex items-center p-2 text-white hover:bg-back-light dark:hover:bg-tertiary"
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          hasScrolled
+            ? "py-3 bg-tertiary/80 backdrop-blur-lg shadow-2xl"
+            : "py-5 bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl flex items-center justify-between mx-auto px-4 sm:px-6 lg:px-8">
+          <Link to="/" className="flex items-center space-x-4">
+            <img
+              src={Logo}
+              alt="Logo"
+              className="w-10 h-10 rounded-full shadow-lg"
             />
-          </svg>
-        </button>
+            <span className="text-xl font-semibold text-white">
+              Vitor Stähelin
+            </span>
+          </Link>
 
-        {/* Menu Desktop */}
-        <div className="hidden lg:flex items-center space-x-4 relative">
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center space-x-10">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/projects">Projects</NavLink>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none z-50"
+            aria-label="Toggle menu"
+          >
+            <div className="w-6 h-6 relative">
+              <span
+                className={`absolute h-0.5 w-full bg-white rounded-full transition-all duration-300 ease-in-out ${
+                  isMobileMenuOpen
+                    ? "rotate-45 top-1/2 -translate-y-1/2"
+                    : "top-1/4"
+                }`}
+              />
+              <span
+                className={`absolute h-0.5 w-full bg-white rounded-full transition-all duration-300 ease-in-out ${
+                  isMobileMenuOpen ? "opacity-0" : "top-1/2"
+                }`}
+              />
+              <span
+                className={`absolute h-0.5 w-full bg-white rounded-full transition-all duration-300 ease-in-out ${
+                  isMobileMenuOpen
+                    ? "-rotate-45 top-1/2 -translate-y-1/2"
+                    : "top-3/4"
+                }`}
+              />
+            </div>
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-tertiary/95 backdrop-blur-xl flex flex-col items-center justify-center transition-opacity duration-300 ease-in-out lg:hidden ${
+          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="space-y-8 text-center">
           <Link
             to="/"
-            className="text-sm text-white hover:text-primary font-bold"
+            className="block text-4xl font-bold text-white hover:text-primary transition-colors"
+            onClick={toggleMobileMenu}
           >
             Home
           </Link>
           <Link
             to="/projects"
-            className="text-sm text-white hover:text-primary font-bold"
+            className="block text-4xl font-bold text-white hover:text-primary transition-colors"
+            onClick={toggleMobileMenu}
           >
-            Projects List
+            Projects
           </Link>
-          {/* <a
-            href="#contact"
-            className="text-sm text-white hover:text-primary font-bold"
-          >
-            Get in Touch
-          </a> */}
         </div>
-
-        {/* Menu Mobile */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden w-full flex flex-col items-center mt-4 space-y-2">
-            <Link to="/" className="text-sm text-white hover:text-primary">
-              Home
-            </Link>
-            <Link
-              to="/projects"
-              className="text-sm text-white hover:text-primary"
-            >
-              Projects
-            </Link>
-            {/* <a
-              href="#contact"
-              className="text-sm text-white hover:text-primary"
-            >
-              Get in Touch
-            </a> */}
-          </div>
-        )}
       </div>
-    </nav>
+    </>
   );
 };
 
