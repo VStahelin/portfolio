@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import background from "../../../assets/images/background2.png";
 import { ProjectSectionProps } from "../../../interfaces/interfaces";
+import background from "../../../assets/images/background2.png";
 
 interface ProjectsProps {
   projects: ProjectSectionProps[];
@@ -10,7 +10,6 @@ interface ProjectsProps {
 
 const Projects: React.FC<ProjectsProps> = ({ projects, tags }) => {
   const [selectedTag, setSelectedTag] = useState<string>("All");
-  const [showMoreTags, setShowMoreTags] = useState<boolean>(false);
   const disableTags = true;
 
   const sortedProjects = [...projects].sort((a, b) => a.order_id - b.order_id);
@@ -20,157 +19,121 @@ const Projects: React.FC<ProjectsProps> = ({ projects, tags }) => {
       ? sortedProjects
       : sortedProjects.filter((project) => project.tags.includes(selectedTag));
 
-  const uniqueTags = Array.from(new Set(tags));
-
-  const visibleTags = uniqueTags.slice(0, 8);
-  const hiddenTags = uniqueTags.slice(8);
-
   return (
-    <div
-      className="container mx-auto py-8 px-4 min-h-screen flex flex-col justify-center items-center"
-      style={{
-        backgroundImage: `url(${background})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        width: "100%",
-        minHeight: "100vh",
-        height: "auto",
-      }}
-    >
-      <div className="flex flex-col items-center mb-5">
-        <h1 className="text-4xl sm:text-5xl font-bold text-center mb-4 text-white">
-          Highlighted Projects
-        </h1>
-        {/* <p className="text-lg text-center mb-8 text-gray-200">
-          Explore a variety of projects showcasing different technologies and
-          skills. Use the tags below to filter projects based on your interests.
-        </p> */}
-      </div>
-      {!disableTags && (
-        <div id="tags">
-          <div className="flex justify-center flex-wrap gap-2 mb-6">
-            <button
-              onClick={() => setSelectedTag("All")}
-              className={`px-4 py-2 rounded-full ${
-                selectedTag === "All"
-                  ? "bg-tertiary text-white"
-                  : "bg-gray-200 text-gray-700"
-              } hover:bg-secondary hover:text-white transition`}
-            >
-              All
-            </button>
-            {visibleTags.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`px-4 py-2 rounded-full ${
-                  selectedTag === tag
-                    ? "bg-tertiary text-white"
-                    : "bg-gray-200 text-gray-700"
-                } hover:bg-secondary hover:text-white transition`}
-              >
-                {tag}
-              </button>
-            ))}
-            {hiddenTags.length > 0 && (
-              <button
-                onClick={() => setShowMoreTags(!showMoreTags)}
-                className="px-4 py-2 rounded-full bg-primary-light text-tertiary-dark hover:bg-secondary hover:text-white transition"
-              >
-                {showMoreTags ? "See less" : "See more"}
-              </button>
-            )}
-          </div>
-
-          {showMoreTags && (
-            <div className="flex justify-center flex-wrap gap-2 mb-6">
-              {hiddenTags.map((tag) => (
-                <button
-                  key={tag}
-                  onClick={() => setSelectedTag(tag)}
-                  className={`px-4 py-2 rounded-full ${
-                    selectedTag === tag
-                      ? "bg-tertiary text-white"
-                      : "bg-gray-200 text-gray-700"
-                  } hover:bg-secondary hover:text-white transition`}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-      <div className="flex flex-wrap justify-center gap-6">
-        {filteredProjects.length === 0 && (
-          <p className="text-gray-500">No projects available.</p>
-        )}
-        {filteredProjects.map((project) => (
+    <div className="relative min-h-screen bg-gradient-to-br from-tertiary via-quaternary/90 to-tertiary overflow-hidden py-16 px-4">
+      {/* Background with animated waves and particles */}
+      <div
+        className="absolute inset-0 opacity-20 animate-wave"
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(20)].map((_, i) => (
           <div
-            key={project.id}
-            className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col"
+            key={i}
+            className="absolute w-2 h-2 bg-white/10 rounded-full animate-float"
             style={{
-              minWidth: "250px",
-              maxWidth: "400px",
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 2}s`,
+              animationDuration: `${3 + Math.random() * 4}s`,
             }}
-          >
-            <div className="w-full h-48 sm:h-64 relative flex justify-center items-center p-2">
-              <img
-                src={project.thumbnail}
-                alt={`Imagem do projeto ${project.title}`}
-                className="w-full h-full object-contain"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between">
-              <h3 className="text-lg sm:text-xl font-bold mb-2">
-                {project.title}
-              </h3>
-              <p className="text-sm sm:text-base">{project.description}</p>
-              <div className="mt-4 flex flex-wrap gap-2 justify-center">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-block bg-gray-300 text-gray-700 rounded-full px-3 py-1 text-xs font-semibold"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-              <div className="flex justify-center mt-2">
-                <Link
-                  to={project.project_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 px-6 py-2 rounded-full"
-                >
-                  See more
-                </Link>
-              </div>
-            </div>
-          </div>
+          />
         ))}
       </div>
-      {/* VEja mais projetos em /projetcs */}
 
-      <div className="mt-8 w-full max-w-3xl">
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">See more projects</h2>
-            <p className="text-gray-700">
-              I have much more big/medium/nano projects to show you. Some of
-              them are silly, some are serious, some are just for fun. Check
-              them out!
+      <div className="relative z-10 container mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
+          <h1 className="text-4xl md:text-7xl font-bold text-white mb-4 md:mb-6 gradient-text">
+            Highlighted Projects
+          </h1>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto rounded-full"></div>
+        </div>
+
+        {/* Project Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.length === 0 && (
+            <p className="text-gray-400 col-span-full text-center">
+              No projects available.
             </p>
-            <div className="flex justify-center mt-4">
-              <Link
-                to="/projects"
-                className="text-white bg-blue-500 px-6 py-2 rounded-full"
-              >
-                Go to projects
-              </Link>
+          )}
+          {filteredProjects.map((project, index) => (
+            <div
+              key={project.id}
+              className="glass rounded-2xl overflow-hidden group md:hover:-translate-y-2 transition-transform duration-300 shadow-2xl animate-fade-in-up"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="relative h-56 overflow-hidden bg-black/20">
+                <img
+                  src={project.thumbnail}
+                  alt={`Thumbnail for ${project.title}`}
+                  className="w-full h-full object-contain md:group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 hidden md:flex items-center justify-center">
+                  <Link
+                    to={project.project_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white text-lg font-bold border-2 border-white rounded-full px-6 py-2 hover:bg-white hover:text-black transition-colors"
+                  >
+                    View Project
+                  </Link>
+                </div>
+              </div>
+              <div className="p-4 md:p-6">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-300 text-sm md:text-base mb-4 h-24 overflow-hidden">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-block bg-white/10 text-gray-200 rounded-full px-3 py-1 text-xs font-semibold"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                {/* Mobile-only "View Project" button */}
+                <div className="mt-4 text-center md:hidden">
+                  <Link
+                    to={project.project_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-white/20 text-white font-semibold text-sm px-5 py-2 rounded-full"
+                  >
+                    View Project
+                  </Link>
+                </div>
+              </div>
             </div>
+          ))}
+        </div>
+
+        {/* See More Projects Section */}
+        <div className="mt-16 md:mt-20 text-center animate-fade-in-up">
+          <div className="inline-block glass rounded-2xl p-6 md:p-8 shadow-2xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Curious to See More?
+            </h2>
+            <p className="text-gray-300 max-w-xl mx-auto mb-6 text-sm md:text-base">
+              I have a dedicated page with a comprehensive list of my work, from
+              large-scale applications to small personal experiments.
+            </p>
+            <Link
+              to="/projects"
+              className="inline-block bg-gradient-to-r from-primary to-purple-500 text-white font-bold text-base md:text-lg px-6 md:px-8 py-3 rounded-full hover:scale-105 transition-transform duration-300 shadow-lg"
+            >
+              Explore All Projects
+            </Link>
           </div>
         </div>
       </div>
