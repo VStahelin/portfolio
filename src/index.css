@@ -106,6 +106,16 @@ code {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.card-gradient-background {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 76, 88, 0.15),
+    rgba(101, 114, 204, 0.15)
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 /* Gradient text effect */
 .gradient-text {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

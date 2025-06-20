@@ -86,7 +86,7 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
             <div
               className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <div className="glass rounded-3xl p-6 md:p-8 shadow-2xl">
+              <div className="card-gradient-background rounded-3xl p-6 md:p-8 shadow-2xl">
                 <div className="grid md:grid-cols-2 gap-6 items-center">
                   {/* Profile Photo */}
                   <div className="flex justify-center animate-slide-in-left">
@@ -174,7 +174,7 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ about_data }) => {
                 </p>
               </div>
 
-              <div className="glass rounded-3xl p-6 shadow-2xl">
+              <div className="card-gradient-background rounded-3xl p-6 shadow-2xl">
                 <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                   {about_data?.stack_proficiency.map((stack, index) => (
                     <div

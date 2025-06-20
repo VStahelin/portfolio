@@ -26,7 +26,7 @@ const StackCard: React.FC<StackCardProps> = ({
   return (
     <>
       {screen.isMobile ? (
-        <div className="flex flex-col items-center justify-center p-4 glass rounded-lg text-center">
+        <div className="flex flex-col items-center justify-center p-4 card-gradient-background rounded-lg text-center h-36">
           <div className="mb-2">
             <Icon
               iconName={iconName}
