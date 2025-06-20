@@ -26,24 +26,21 @@ const StackCard: React.FC<StackCardProps> = ({
   return (
     <>
       {screen.isMobile ? (
-        <div className="relative bg-quaternary-light shadow-lg rounded-lg overflow-hidden flex flex-col w-40 h-40 items-center justify-start">
-          <a href={projectLink ?? undefined} className="block">
-            <div className="text-gray-800 -mb-5 mt-2">
-              <Icon
-                iconName={iconName}
-                library={library}
-                size={"6em"}
-                gradientColors={["#FF4C58", "#6572CC"]}
-              />
-            </div>
-            <div className="absolute inset-x-0 bottom-0 bg-quaternary bg-opacity-90 flex flex-col items-center justify-center pb-2">
-              <h2 className="text-white text-lg mt-2">{experience}</h2>
-            </div>
-          </a>
+        <div className="flex flex-col items-center justify-center p-4 glass rounded-lg text-center">
+          <div className="mb-2">
+            <Icon
+              iconName={iconName}
+              library={library}
+              size={"3em"}
+              gradientColors={["#FF4C58", "#6572CC"]}
+            />
+          </div>
+          <h3 className="text-white font-semibold text-base">{title}</h3>
+          <p className="text-gray-300 text-sm">{experience}</p>
         </div>
       ) : (
         <div
-          className="relative bg-quaternary shadow-lg rounded-lg overflow-hidden flex flex-col w-64 h-64 items-center justify-center"
+          className="relative bg-quaternary shadow-lg rounded-lg overflow-hidden flex flex-col w-48 h-48 items-center justify-center"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
@@ -51,22 +48,24 @@ const StackCard: React.FC<StackCardProps> = ({
             <Icon
               iconName={iconName}
               library={library}
-              size={"7em"}
+              size={"5em"}
               gradientColors={["#FF4C58", "#6572CC"]}
             />
           </div>
 
-          <p className="mt-4 text-xl font-semibold text-white">{title}</p>
+          <p className="mt-3 text-lg font-semibold text-white">{title}</p>
 
           <div
             className={`absolute inset-0 bg-gray-900 bg-opacity-90 flex flex-col items-center justify-center transition-opacity duration-300 ${
               hovered ? "opacity-100" : "opacity-0"
             }`}
           >
-            <h2 className="text-white text-lg text-bold mb-2">{experience}</h2>
+            <h2 className="text-white text-base text-bold mb-2">
+              {experience}
+            </h2>
 
-            <div className="h-4 w-32">
-              <div className="text-white">Experience</div>
+            <div className="h-4 w-28">
+              <div className="text-white text-sm">Experience</div>
               <ProgressBar
                 progress={progress}
                 width="100%"
@@ -78,7 +77,7 @@ const StackCard: React.FC<StackCardProps> = ({
             </div>
 
             <button
-              className="text-white hover:text-blue-400 transition duration-300 mt-7"
+              className="text-white hover:text-blue-400 transition duration-300 mt-5 text-sm"
               onClick={() => projectLink && window.open(projectLink, "_blank")}
             >
               See related projects
