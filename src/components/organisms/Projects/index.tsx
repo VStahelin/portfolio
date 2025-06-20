@@ -48,7 +48,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects, tags }) => {
       <div className="relative z-10 container mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
-          <h1 className="text-4xl md:text-7xl font-bold text-white mb-4 md:mb-6 gradient-text">
+          <h1 className="text-4xl md:text-7xl font-bold text-white mb-4 md:mb-6 gradient-text leading-loose py-4">
             Highlighted Projects
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto rounded-full"></div>

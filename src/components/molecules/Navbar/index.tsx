@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../../assets/images/logo.png";
 
 const Navbar = () => {
@@ -49,12 +50,15 @@ const Navbar = () => {
       }}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <Link
+          to="/"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
           <img src={Logo} alt="Logo" className="w-10 h-10 rounded-full" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white-dark">
             Vitor Stähelin
           </span>
-        </a>
+        </Link>
 
         <button
           onClick={toggleMobileMenu}
@@ -79,18 +83,18 @@ const Navbar = () => {
 
         {/* Menu Desktop */}
         <div className="hidden lg:flex items-center space-x-4 relative">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="text-sm text-white hover:text-primary font-bold"
           >
             Home
-          </a>
-          <a
-            href="projects"
+          </Link>
+          <Link
+            to="/projects"
             className="text-sm text-white hover:text-primary font-bold"
           >
             Projects List
-          </a>
+          </Link>
           {/* <a
             href="#contact"
             className="text-sm text-white hover:text-primary font-bold"
@@ -102,15 +106,15 @@ const Navbar = () => {
         {/* Menu Mobile */}
         {isMobileMenuOpen && (
           <div className="lg:hidden w-full flex flex-col items-center mt-4 space-y-2">
-            <a href="/" className="text-sm text-white hover:text-primary">
+            <Link to="/" className="text-sm text-white hover:text-primary">
               Home
-            </a>
-            <a
-              href="/projects"
+            </Link>
+            <Link
+              to="/projects"
               className="text-sm text-white hover:text-primary"
             >
               Projects
-            </a>
+            </Link>
             {/* <a
               href="#contact"
               className="text-sm text-white hover:text-primary"

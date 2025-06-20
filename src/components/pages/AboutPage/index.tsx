@@ -1,10 +1,8 @@
 import { DataContext } from "../../../context/DataAPIContext";
-import { BaseUrlContext } from "../../../context/GlobalValues";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AboutPage: React.FC = () => {
-  const BaseUrl = useContext(BaseUrlContext);
   const context = useContext(DataContext);
 
   if (!context) {
@@ -15,7 +13,7 @@ const AboutPage: React.FC = () => {
   const navigate = useNavigate();
 
   const backToHome = () => {
-    navigate(`${BaseUrl}/`);
+    navigate(`/`);
   };
   return (
     <div>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import ReactGA from "react-ga4";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Routes,
   Navigate,
@@ -14,7 +14,6 @@ import AboutPage from "./components/pages/AboutPage";
 import Footer from "./components/molecules/Footer";
 import Loading from "./components/molecules/Loading";
 import { DataContext } from "./context/DataAPIContext";
-import { BaseUrlContext } from "./context/GlobalValues";
 import ProjectPage from "./components/pages/ProjectsPage";
 import Navbar from "./components/molecules/Navbar";
 
@@ -47,7 +46,6 @@ const PageTracking: React.FC = () => {
 };
 
 const App: React.FC = () => {
-  const BaseUrl = useContext(BaseUrlContext); // Fixed typo
   const context = useContext(DataContext);
 
   const cachedData = useMemo(() => {
@@ -102,7 +100,7 @@ const App: React.FC = () => {
         <Navbar />
         <Routes>
           <Route
-            path={`${BaseUrl}/`}
+            path={`/`}
             element={
               context ? (
                 <HomePage portfolio={context.portfolio} /> // Fixed typo
@@ -111,9 +109,9 @@ const App: React.FC = () => {
               )
             }
           />
-          <Route path={`${BaseUrl}/about`} element={<AboutPage />} />
-          <Route path={`${BaseUrl}/projects`} element={<ProjectPage />} />
-          <Route path="*" element={<Navigate to={`${BaseUrl}/`} replace />} />
+          <Route path={`/about`} element={<AboutPage />} />
+          <Route path={`/projects`} element={<ProjectPage />} />
+          <Route path="*" element={<Navigate to={`/`} replace />} />
         </Routes>
         <Footer github={github} linkedin={linkedin} email={email} />
       </div>
