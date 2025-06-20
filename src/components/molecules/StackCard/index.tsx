@@ -9,7 +9,7 @@ interface StackCardProps {
   title: string;
   experience: string;
   progress: number;
-  projectLink: string | null;
+  projectLink?: string | null;
 }
 
 const StackCard: React.FC<StackCardProps> = ({
@@ -26,7 +26,7 @@ const StackCard: React.FC<StackCardProps> = ({
   return (
     <>
       {screen.isMobile ? (
-        <div className="flex flex-col items-center justify-center p-4 card-gradient-background rounded-lg text-center h-36">
+        <div className="flex flex-col items-center justify-center p-4 bg-quaternary shadow-lg rounded-lg text-center h-36">
           <div className="mb-2">
             <Icon
               iconName={iconName}
